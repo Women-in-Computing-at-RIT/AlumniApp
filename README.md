@@ -16,21 +16,21 @@ Run the following commands:
   
 You should now be able to run the project.
         
-   Open emulator from Android studio or from the command line.
-   
-   To open emulator from command line without opening Android Studio:
-   
-   Change directory to "tools" in sdk location folder and enter:
-            
-            emulator -avd [name of device]
-            
-   To get the name of the device enter:
-            
-            emulator -list-avds
+Open emulator from Android studio or from the command line.
 
-   Run project:
-    
-        react-native run-android
+To open emulator from command line without opening Android Studio:
+
+Change directory to "tools" in sdk location folder and enter:
+
+    emulator -avd [name of device]
+
+To get the name of the device enter:
+
+    emulator -list-avds
+
+Run project:
+
+    react-native run-android
   
 If red error screen appears on emulator, then run following command in separate terminal before previous command:
 
