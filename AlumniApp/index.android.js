@@ -12,15 +12,27 @@ import {
   View
 } from 'react-native';
 
+const Realm = require('realm');
+
 class AlumniApp extends Component {
   render() {
-    return (
+      let realm = new Realm({
+        schema: [{name: 'Test', properties: {name: 'string'}}]
+      });
+
+      realm.write(() => {
+        realm.create('Test',{name: 'Testy'});
+      });
+    return(
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
+        </Text>
+	<Text style={styles.instructions}>
+          Should say a number: {realm.objects('Test').length}
         </Text>
         <Text style={styles.instructions}>
           Double tap R on your keyboard to reload,{'\n'}
