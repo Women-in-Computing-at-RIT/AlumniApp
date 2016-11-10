@@ -6,15 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-<<<<<<< HEAD
     "react": "^15.3.2",
-    "react-native": "^0.34.1",
-    "realm": "^0.14.3"
-=======
-    "react": "15.3.2",
     "react-native": "^0.34.1",
     "realm": "^0.14.3",
     "realm-sync-js": "0.0.0-c"
->>>>>>> 8ef6cde996d38d171d1a6a328c292e031c733296
   }
 }
