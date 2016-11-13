@@ -5,26 +5,29 @@
  */
 
 const Realm = require('realm');
-// const Message = require('message');
+const Message = require('./message');
+const Profile = require('./profile');
+
 // const RealmSync = require('kitesync');
-class User {
-    const UserSchema = {
-        name: 'User',       // name of the schema
-        properties: {
-            username: String,
-            password: String,
-            email: String,
-            // message: message,
-            // profile: profile
-        }
-    };
-}
 
-User.schema = UserSchema;   
 
-let realm = new Realm({schema: [UserSchema]});
+export default class User {}
+User.Schema = {
+    name: 'User',       // name of the schema
+    properties: {
+        username: {type: 'string'},
+        password: {type: 'string'},
+        email: {type: 'string'},
+        message: {objectType: Message, optional: true},
+        profile: {objectType: Profile, optional: true}
+    }
+};
 
-// Instantiate KiteSync 
+
+
+
+
+// Instantiate KiteSync
 
 // const realmSync = RealmSync([UserSchema]);
 // const realm = realmSync.getRealmInstance();
