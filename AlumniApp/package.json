@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "react": "^15.3.2",
-    "react-native": "^0.34.1",
+    "react-native": "^0.40",
     "realm": "^0.14.3",
     "realm-sync-js": "0.0.0-c"
   }
