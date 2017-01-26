@@ -25,8 +25,6 @@ User.Schema = {
 
 
 
-
-
 // Instantiate KiteSync
 
 // const realmSync = RealmSync([UserSchema]);
