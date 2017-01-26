@@ -12,9 +12,9 @@ class Message {}
 Message.schema = {
     name: 'Message',       // name of the schema
     properties: {
-        sendTo: String,
-        sentFrom: String,
-        messageText: Text
+        sendTo: {type: 'int'},
+        sentFrom: {type: 'int'},
+        messageText: {type: 'string'}
     }
 };
 
@@ -25,5 +25,3 @@ const realm = new Realm({schema: [Message]});
 
 // const realmSync = RealmSync([UserSchema]);
 // const realm = realmSync.getRealmInstance();
-
-

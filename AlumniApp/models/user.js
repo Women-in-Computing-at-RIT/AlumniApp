@@ -5,7 +5,7 @@
  */
 
 const Realm = require('realm');
-const Message = require('./message');
+const Inbox = require('./inbox');
 const Profile = require('./profile');
 
 // const RealmSync = require('kitesync');
@@ -15,10 +15,11 @@ export default class User {}
 User.Schema = {
     name: 'User',       // name of the schema
     properties: {
+        id: {type: 'int'},
         username: {type: 'string'},
         password: {type: 'string'},
         email: {type: 'string'},
-        message: {objectType: Message, optional: true},
+        messages: {objectType: Inbox, optional: true},
         profile: {objectType: Profile, optional: true}
     }
 };
@@ -29,5 +30,3 @@ User.Schema = {
 
 // const realmSync = RealmSync([UserSchema]);
 // const realm = realmSync.getRealmInstance();
-
-

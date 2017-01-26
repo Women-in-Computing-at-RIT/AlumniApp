@@ -19,7 +19,7 @@ Then you need to clone the repository. You probably want to enter your Documents
 If you look in the upper right hand corner there is
 a green box; click on it and copy the link to your clipboard then run, while inside the place you want your folder:
 
-> git clone link
+  git clone link
 
 ## Setting up the emulator
 For this project we need an some form of Android emulator, you can get this from
@@ -51,23 +51,23 @@ so for Fedora: "sudo yum install nodejs npm" etc.
 To install react native we want to cd back to our project folder.
 First I want you to check the package.json and make sure that it reads under dependencies:
 
-> "react": "^15.3.2",
-> "react-native": "^0.40",
+    "react": "^15.3.2",
+    "react-native": "^0.40",
 
 If not then change the numbers to reflect the proper versions.
 
 Now run the following command:
 
-> sudo npm install
-> sudo npm install -g react-native-cli
+    sudo npm install
+    sudo npm install -g react-native-cli
 
-If this does not work when tryig to run later then try the following commands:
+If this does not work when trying to run later then try the following commands:
     sudo npm install react-native
     sudo npm install react
 
 In the [react native docs](https://facebook.github.io/react-native/docs/getting-started.html ) they say watchman is optional,
 THEY LIE! YOU NEED IT! So install it using:
-> sudo npm watchman
+    sudo npm watchman
 
 ## Run it!
 Run the android device emulator if you don't already have it open.
@@ -82,12 +82,12 @@ To get the name of the device enter:
     emulator -list-avds
 
 Then open one terminal and run the command:
-> react-native start
+    react-native start
 
 This terminal will prevent an error on run.
 
 Then open another terminal and run:
-> react-native run-android
+    react-native run-android
 
 This may take a while especially the first time.
 If the app doesn't open automatically go to apps on the device and click AlumniApp.
@@ -100,7 +100,7 @@ Linux distros often use open java sdk which react does not like and it will comp
 about not having a "tools.jar". I have heard of people getting around this by making sure
 there is the dev or devel tools involved for opensdk but I suggest installing [oracle's jdk.](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 Then make sure the JAVA_HOME variable points to oracle's jdk using:
-> export JAVA_HOME=path
+    export JAVA_HOME=path
 
 ### UNMET PEER DEPENDANCY
 Check to make sure the package.json is correct as done above. Otherwise install the
