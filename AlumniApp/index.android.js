@@ -15,13 +15,14 @@ import {
 const Realm = require('realm');
 
 class AlumniApp extends Component {
+  //this.state = {text: ''};
   render() {
       let realm = new Realm({
         schema: [{name: 'Test', properties: {name: 'string'}}]
       });
 
       realm.write(() => {
-        realm.create('Test',{name: 'Testy'});
+        realm.create('Test', {name: 'Testy'});
       });
     return(
       <View style={styles.container}>
@@ -31,8 +32,9 @@ class AlumniApp extends Component {
         <Text style={styles.instructions}>
           To get started, edit index.android.js
         </Text>
-	<Text style={styles.instructions}>
-          Should say a number: {realm.objects('Test').length}
+	      <Text style={styles.instructions}>
+          Should say a number: {realm.objects('Test').length}{'\n'}
+          Should say Testy: {realm.objects('Test').filtered('name ="Testy"')[0].name}
         </Text>
         <Text style={styles.instructions}>
           Double tap R on your keyboard to reload,{'\n'}
