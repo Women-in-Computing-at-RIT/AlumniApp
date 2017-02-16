@@ -22,9 +22,9 @@ User.Schema = {
         messages: {objectType: Inbox, optional: true},
         profile: {objectType: Profile, optional: true}
     }
-};
+}; // end of User.Schema
 
-
+export const realm = new Realm({schema: [User]});
 
 // Instantiate KiteSync
 

@@ -10,8 +10,7 @@ const JobPost = require('jobPost');
 const Project = require('project');
 // const RealmSync = require('kitesync');
 
-
-class Profile {}
+// Realm Schema and setup
 Profile.schema = {
     name: 'Profile',       // name of the schema
     properties: {
@@ -29,11 +28,34 @@ Profile.schema = {
 };
 
 const realm = new Realm({schema: [Profile]});
+
+class Profile {
+
+    // If the profile already exists then find it in the database
+    // and put it in prof for access
+    // Otherwise make it null
+    constructor(id){
+        if(id !=-1){
+            this.state{prof: realm.objects('Profile').filtered(id)[0]}
+        }
+        else{
+            this.state{prof: null}
+        }
+    }
+
+    // Creates a new Profile in the relam database
+    createProfile(fname, lname, photo, major,
+        gradYear, workExperience, projects, links, JobPosts){
+            
+        }
+
+
+}
+
+
 // export const profile = Profile.schema;
 
 // Instantiate KiteSync
 
 // const realmSync = RealmSync([UserSchema]);
 // const realm = realmSync.getRealmInstance();
-
-

@@ -5,10 +5,8 @@
  */
 
 const Realm = require('realm');
-// const RealmSync = require('kitesync');
 
-
-class WorkExperience {}
+// Schema for realm
 WorkExperience.schema = {
     name: 'WorkExperience',       // name of the schema
     properties: {
@@ -22,11 +20,16 @@ WorkExperience.schema = {
 };
 
 const realm = new Realm({schema: [WorkExperience]});
+
+class WorkExperience {
+    
+}
+
 // export const workExperience = WorkExperience.schema;
+
+
 
 // Instantiate KiteSync
 
 // const realmSync = RealmSync([UserSchema]);
 // const realm = realmSync.getRealmInstance();
-
-
