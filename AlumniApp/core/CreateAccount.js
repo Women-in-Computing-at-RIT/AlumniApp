@@ -7,7 +7,6 @@
 import React, {Component} from 'react';
 import{ AppRegistry, Text, TextInput, View, Alert} from 'react-native';
 
-var alertMessage_1 = 'Password is not strong enough'
 /**
  *Made Constructor and its properties
  */
