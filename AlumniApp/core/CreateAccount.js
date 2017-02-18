@@ -5,8 +5,9 @@
  */
 
 import React, {Component} from 'react';
-import{ AppRegistry, Text, TextInput, View} from 'react-native';
+import{ AppRegistry, Text, TextInput, View, Alert} from 'react-native';
 
+var alertMessage_1 = 'Password is not strong enough'
 /**
  *Made Constructor and its properties
  */
@@ -21,6 +22,7 @@ class createAccount extends React.Component{
 			confirmPassword:'';
 		}	
 	}
+
 }
 
 /**
@@ -36,25 +38,44 @@ render(){
 				placeholder="Name"
 				onChangeText ={(text) => this.setState({Name: text})}
 				value{(this.state.name)}
+				maxLength = {30}
 			/>
+			
 			<TextInput
 				placeholder="E-mail"
 				onChangeText ={(text)=>this.setState({email: text})}
 				value{(this.state.email)}
+				maxLength = {30}
 			/>
 			<TextInput
+				<Text>Please input a password at least 8 characters</Text>
+				<Text>To help make the password stronger use special characters or numbers</Text>
 				placeholder="Password"
 				onChangeText={(text)=>this.setState({password: text})
 				secureTextEntry={true}
+				maxLength = {30}
+				<ReactPasswordStrength
+					className="customStyling"
+					style={{ display: 'none' }}
+					minLength={8}
+					minScore={2}
+					scoreWords={['weak', 'okay', 'good', 'strong', 'excellent']}
+					changeCallback={foo}
+					inputProps={{ name: "password_input", autocomplete: "off" }}
+				/>
 			/>
 			<TextInput
 				placeholder="Confirm Password"
 				onChangeText={(text)=>this.setState({confirmPassword: text})
 				secureTextEntry={true}
+				maxLength = {30}
 			/>
 			<Button onPress={onPressButton}
 			title = "Submit"
 			accessibilityLabel="Creating Account"
+			if(Password.length < {8}){
+				alert("Password is not long enough!");
+			}
 		/>
 		</View>
 	);
