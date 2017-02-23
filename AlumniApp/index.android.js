@@ -11,6 +11,8 @@ import {
   Text,
   View
 } from 'react-native';
+// for testing
+import CreateAccount from './core/CreateAccount';
 
 const Realm = require('realm');
 
@@ -40,6 +42,7 @@ class AlumniApp extends Component {
           Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
         </Text>
+        <CreateAccount />
       </View>
     );
   }
