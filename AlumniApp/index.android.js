@@ -12,21 +12,22 @@ import {
   View
 } from 'react-native';
 // for testing
-import CreateAccount from './core/CreateAccount';
+import CreateEvent from './core/CreateEvent';     //Import CreateAccount
+//<CreateAccount />
 
 const Realm = require('realm');
 
 class AlumniApp extends Component {
   //this.state = {text: ''};
   render() {
-      let realm = new Realm({
-        schema: [{name: 'Test', properties: {name: 'string'}}]
-      });
+    let realm = new Realm({
+      schema: [{ name: 'Test', properties: { name: 'string' } }]
+    });
 
-      realm.write(() => {
-        realm.create('Test', {name: 'Testy'});
-      });
-    return(
+    realm.write(() => {
+      realm.create('Test', { name: 'Testy' });
+    });
+    return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
@@ -34,7 +35,7 @@ class AlumniApp extends Component {
         <Text style={styles.instructions}>
           To get started, edit index.android.js
         </Text>
-	      <Text style={styles.instructions}>
+        <Text style={styles.instructions}>
           Should say a number: {realm.objects('Test').length}{'\n'}
           Should say Testy: {realm.objects('Test').filtered('name ="Testy"')[0].name}
         </Text>
@@ -42,7 +43,7 @@ class AlumniApp extends Component {
           Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
         </Text>
-        <CreateAccount />
+        <CreateEvent />
       </View>
     );
   }
