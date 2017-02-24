@@ -1,14 +1,12 @@
 /**
- * file: CreateAccount.js
- * Description: Creates the Account of the User
- * Created by David on 02/16/17
+ * file: CreateEvent.js
+ * Description: Creates Events
+ * Created by Abby on 02/23/17
  */
 
 import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, View, Button, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker'
-// const example
-// const onPressButton = () => { Alert.alert('Button has been pressed!'); };
 
 /**
  *Made Constructor and its properties
@@ -32,7 +30,7 @@ export default class CreateEvent extends React.Component {
 		Alert.alert('Created an Event!');
 	}
 
-	// Have the User input Name, E-mail, Password, Confirm Password
+	// Have the User input Event Name, Date, Time, Location, Description
 	// Submit button changes state when it is pressed
 	render() {
 		return (
