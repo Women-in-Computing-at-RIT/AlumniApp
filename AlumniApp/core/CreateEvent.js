@@ -46,22 +46,21 @@ export default class CreateEvent extends React.Component {
 				<Text>Choose Date and Time:</Text>
 				<DatePicker
 					style={{ width: 200 }}
-					date={this.state.eventDate}
+					date={this.state.eventDate.toDate()}
 					mode="date"
 					placeholder="Date"
 					format="MMMM Do YYYY"
-					minDate={moment()}
+					minDate={moment().toDate()}
 					confirmBtnText="Confirm"
 					cancelBtnText="Cancel"
 					onDateChange={(date) => this.setState({ eventDate: moment(date) })}
 				/>
 				<DatePicker
 					style={{ width: 200, marginTop: 10 }}
-					date={this.state.eventTime}
+					date={this.state.eventTime.toDate()}
 					mode="time"
 					placeholder="Time"
 					format="h:mm a"
-					minDate={moment()}
 					confirmBtnText="Confirm"
 					cancelBtnText="Cancel"
 					showIcon={false}
