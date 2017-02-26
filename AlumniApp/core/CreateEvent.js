@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, View, Button, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker'
+import moment from 'moment';
 
 /**
  *Made Constructor and its properties
@@ -17,8 +18,8 @@ export default class CreateEvent extends React.Component {
 
 		this.state = {
 			eventName: '',
-			eventDate: '2017-02-23',
-			eventTime: '',
+			eventDate: moment(),
+			eventTime: moment(),
 			eventLocation: '',
 			eventDescription: ''
 
@@ -28,6 +29,7 @@ export default class CreateEvent extends React.Component {
 	// TODO - fix to push the entered information to realm etc.
 	onPressButton() {
 		Alert.alert('Created an Event!');
+		Alert.alert(`${JSON.stringify(this.state)}`);
 	}
 
 	// Have the User input Event Name, Date, Time, Location, Description
@@ -40,27 +42,35 @@ export default class CreateEvent extends React.Component {
 					onChangeText={(text) => this.setState({ eventName: text })}
 					value={this.state.eventName}
 				/>
+				
+				<Text>Choose Date and Time:</Text>
 				<DatePicker
 					style={{ width: 200 }}
-					date={this.state.date}
+					date={this.state.eventDate}
 					mode="date"
 					placeholder="Date"
-					format="YYYY-MM-DD"
-					minDate="2017-02-23"
+					format="MMMM Do YYYY"
+					minDate={moment()}
 					confirmBtnText="Confirm"
 					cancelBtnText="Cancel"
-					onDateChange={(date) => this.setState({ eventDate: date })}
-					value={this.state.eventDate}
+					onDateChange={(date) => this.setState({ eventDate: moment(date) })}
 				/>
-				<TextInput
+				<DatePicker
+					style={{ width: 200, marginTop: 10 }}
+					date={this.state.eventTime}
+					mode="time"
 					placeholder="Time"
-					onChangeText={(text) => this.setState({ eventTime: text })}
-					value={this.state.eventTime}
+					format="h:mm a"
+					minDate={moment()}
+					confirmBtnText="Confirm"
+					cancelBtnText="Cancel"
+					showIcon={false}
+					onDateChange={(time) => this.setState({ eventTime: moment(time, "h:mm a")})}
 				/>
 				<TextInput
 					placeholder="Location"
 					onChangeText={(text) => this.setState({ eventLocation: text })}
-					value={this.state.eventTime}
+					value={this.state.eventLocation}
 				/>
 				<TextInput
 					placeholder="Description"
