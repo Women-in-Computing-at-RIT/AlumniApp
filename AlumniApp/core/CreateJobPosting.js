@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, View, Button, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker'
+import moment from 'moment';
 
 /**
  *Made Constructor and its properties
@@ -17,8 +18,8 @@ export default class CreateJobPost extends React.Component {
 
         this.state = {
             jobName: '',
-            startDate: '',
-            endDate: '',
+            startDate: moment(),
+            endDate: moment(),
             jobLocation: '',
             jobDescription: ''
 
@@ -28,6 +29,7 @@ export default class CreateJobPost extends React.Component {
     // TODO - fix to push the entered information to realm etc.
     onPressButton() {
         Alert.alert('Created an Job Post!');
+        Alert.alert(`${JSON.stringify(this.state)}`);
     }
 
     // Have the User input Event Name, Date, Time, Location, Description
@@ -42,27 +44,25 @@ export default class CreateJobPost extends React.Component {
                 />
                 <DatePicker
                     style={{ width: 200 }}
-                    date={this.state.date}
+                    date={this.state.startDate.toDate()}
                     mode="date"
                     placeholder="Start Date"
-                    format="YYYY-MM-DD"
-                    minDate="2017-02-23"
+                    format="MMMM Do YYYY"
+                    minDate={moment().toDate()}
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
-                    onDateChange={(date) => this.setState({ startDate: date })}
-                    value={this.state.startDate}
+                    onDateChange={(date) => this.setState({ startDate: moment(date) })}
                 />
                 <DatePicker
                     style={{ width: 200 }}
-                    date={this.state.date}
+                    date={this.state.endDate.toDate()}
                     mode="date"
                     placeholder="End Date"
-                    format="YYYY-MM-DD"
-                    minDate="2017-02-23"
+                    format="MMMM Do YYYY"
+                    minDate={moment().toDate()}
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
-                    onDateChange={(date) => this.setState({ endDate: date })}
-                    value={this.state.endDate}
+                    onDateChange={(date) => this.setState({ endDate: moment(date) })}
                 />
 
                 <TextInput
