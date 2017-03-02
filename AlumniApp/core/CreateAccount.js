@@ -23,11 +23,11 @@ const PasswordInput = (props) => (
 /**
  *Made Constructor and its properties
  */
-export default class CreateAccount extends React.Component{
-	constructor(props){
+export default class CreateAccount extends React.Component {
+	constructor(props) {
 		super(props);
 
-		this.state ={
+		this.state = {
 			fullName: '',
 			email:'',
 			password: ''
@@ -82,6 +82,7 @@ export default class CreateAccount extends React.Component{
 
 				<TextInput
 					placeholder="E-mail"
+
 					onChangeText={(text)=>this.setState({email: text})}
 					value={(this.state.email)}
 					maxLength={30}
