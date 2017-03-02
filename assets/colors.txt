@@ -1,0 +1,6 @@
+WiC Logo Purple Color: #4D1F5B
+WiCHacks Gold Color: #FDC000
+
+Used in Website:
+WiC Purple Tint Color: #EDE8EE
+WiC Purple Hover Color: #8464A1
