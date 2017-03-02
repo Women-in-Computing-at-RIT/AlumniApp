@@ -42,14 +42,14 @@ export default class CreateAccount extends React.Component {
 				<TextInput
 					placeholder="Name"
 					onChangeText={(text) => this.setState({ fullName: text })}
-					value{(this.state.name) }
+					value{this.state.fullName}
 					maxLength={30}
 				/>
 
 				<TextInput
 					placeholder="E-mail"
 					onChangeText={(text) => this.setState({ email: text })}
-					value{(this.state.email) }
+					value{this.state.email}
 					maxLength={30}
 				/>
 				<TextInput
@@ -88,9 +88,7 @@ export default class CreateAccount extends React.Component {
 		/>
 			</View >
 		);
-	};
-
-
+	}
 
 
 	// Have the User input Name, E-mail, Password, Confirm Password
