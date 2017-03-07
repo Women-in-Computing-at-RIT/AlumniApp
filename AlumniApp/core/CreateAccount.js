@@ -52,6 +52,7 @@ export default class CreateAccount extends React.Component {
             this.setState({password});
         } else {
 			// On Invalid Password
+			Alert.alert('Alert Message: ', 'Your password is not strong enough.')
 		}
 	}
 	
@@ -61,6 +62,7 @@ export default class CreateAccount extends React.Component {
 			Alert.alert(`${text} == ${this.state.password}, password matches!`);
 		} else {
 			// On Mismatch
+			Alert.alert('Alert Message: ', 'Your password does not match.')
 		}
 	}
 	
@@ -75,26 +77,20 @@ export default class CreateAccount extends React.Component {
 			<View>
 				<TextInput
 					placeholder="Name"
-<<<<<<< HEAD
 					onChangeText={(text) => this.setState({ fullName: text })}
 					value{this.state.fullName}
-=======
 					onChangeText ={(text) => this.setState({fullName: text})}
 					value={(this.state.name)}
->>>>>>> cdfa5ca4278a4962d073ea7384ee0fd8ac0c4fde
 					maxLength={30}
 				/>
 
 				<TextInput
 					placeholder="E-mail"
-<<<<<<< HEAD
 					onChangeText={(text) => this.setState({ email: text })}
 					value{this.state.email}
-=======
 
 					onChangeText={(text)=>this.setState({email: text})}
 					value={(this.state.email)}
->>>>>>> cdfa5ca4278a4962d073ea7384ee0fd8ac0c4fde
 					maxLength={30}
 				/>
 				<Text>Please input a password at least 8 characters</Text>
@@ -102,7 +98,6 @@ export default class CreateAccount extends React.Component {
 				<PasswordInput
 					placeholder="Enter Password"
 					maxLength={30}
-<<<<<<< HEAD
 					<Text>Please input a password at least 8 characters</Text>
 			<Text>To help make the password stronger use special characters or numbers</Text>
 
@@ -146,9 +141,7 @@ export default class CreateAccount extends React.Component {
 					placeholder="Name"
 					onChangeText={(text) => this.setState({ fullName: text })}
 					value={this.state.fullName}
-=======
 					onChangeText={this.onPasswordVerification.bind(this, ['weak', 'okay', 'good', 'strong', 'stronger'])}
->>>>>>> cdfa5ca4278a4962d073ea7384ee0fd8ac0c4fde
 				/>
 				<PasswordInput
 					placeholder="Confirm Password"
