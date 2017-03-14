@@ -1,3 +1,6 @@
+#[remote "origin"]
+#
+url=ssh://dquach217@github.com/Women-in-Computing-at-RIT/AlumniApp.git
 # OSX
 #
 .DS_Store
