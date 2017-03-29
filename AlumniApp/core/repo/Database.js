@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 /**
  * Realm database management for accessing and creating the database
  */
@@ -38,14 +40,14 @@ const UserSchema = {
 const ProfileSchema = {
     name: 'Profile',       // name of the schema
     properties: {
-        firstName: String,
-        lastName: String,
+        firstName: 'string',
+        lastName: 'string',
         photo: {type: 'data', optional: true},
-        major: String,
-        gradYear: Date,
+        major: 'string',
+        gradYear: 'date',
         workExperience: {objectType: 'WorkExperience', optional: true},
         projects: {type: 'List', objectType: 'Project', optional: true},
-        links: {type: 'List', objectType: String, optional: true},
+        links: {type: 'List', objectType: 'string', optional: true},
         jobPosts: {type: 'List', objectType: 'JobPost', optional: true}
         // connections:
     }
@@ -54,10 +56,10 @@ const ProfileSchema = {
 const EventSchema = {
     name: 'Event',       // name of the schema
     properties: {
-        eventTitle: String,
-        date: Date,
-        time: Date,
-        eventDescription: String
+        eventTitle: 'string',
+        date: 'date',
+        time: 'date',
+        eventDescription: 'string'
     }
 };
 
@@ -71,47 +73,47 @@ const CalendarSchema = {
 const WorkExperienceSchema = {
     name: 'WorkExperience',       // name of the schema
     properties: {
-        companyName: String,
-        location: String,
-        jobTitle: String,
-        jobDescription: String,
-        startDate: Date,
-        endDate: {type: String, optional: true}
+        companyName: 'string',
+        location: 'string',
+        jobTitle: 'string',
+        jobDescription: 'string',
+        startDate: 'date',
+        endDate: {type: 'string', optional: true}
     }
 };
 
 const ProjectSchema = {
     name: 'Project',       // name of the schema
     properties: {
-        projectName: String,
-        projectDescription: String
+        projectName: 'string',
+        projectDescription: 'string'
     }
 };
 
 const JobPostSchema = {
     name: 'JobPost',       // name of the schema
     properties: {
-        companyName: String,
-        location: String,
-        jobTitle: String,
-        jobDescription: String,
-        requirements: {type: 'List', objectType: String}
+        companyName: 'string',
+        location: 'string',
+        jobTitle: 'string',
+        jobDescription: 'string',
+        requirements: {type: 'List', objectType: 'string'}
     }
 };
 
 /////////////////////////////////////////////////////////////////
 // CLASS WITH METHODS
 
-export default class Database{
+export default new Realm({'schema': [MessageSchema, InboxSchema, JobPostSchema, ProjectSchema, WorkExperienceSchema, EventSchema, CalendarSchema, ProfileSchema, UserSchema]});
+
+export class Database extends Component{
 
     /**
      * Sets up the database with the schema (in a relational database this would be tables)
      * Call this function first always
      */
     createDatabase(){
-        const realm = new Realm({schema: [MessageSchema, InboxSchema, JobPostSchema,
-            ProjectSchema, WorkExperienceSchema, EventSchema, CalendarSchema,
-            ProfileSchema, UserSchema]});
+        //var realm = new Realm({schema: [MessageSchema, InboxSchema, JobPostSchema, ProjectSchema, WorkExperienceSchema, EventSchema, CalendarSchema, ProfileSchema, UserSchema]});
     }
 
     /**

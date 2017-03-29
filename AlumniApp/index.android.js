@@ -21,8 +21,9 @@ class AlumniApp extends Component {
   //this.state = {text: ''};
 
   render() {
-      Database.createDatabase();
-      Database.add({"name":"User", "properties": {
+      var db = new Database;
+      db.createDatabase();
+      db.add({"name":"User", "properties": {
           "id":1,
           "username": "blah",
           "password": "secret",
@@ -30,7 +31,7 @@ class AlumniApp extends Component {
 
     return (
       <View style={styles.container}>
-               <Text>{Database.query("User")}
+               <Text>{db.query("User")}
                </Text>
 
       </View>
