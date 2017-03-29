@@ -32,7 +32,7 @@ export default class CreateAccount extends React.Component {
 			email:'',
 			password: ''
 		};
-		
+
 		this.onPasswordVerification = this.onPasswordVerification.bind(this);
 		this.onPasswordConfirm = this.onPasswordConfirm.bind(this);
 	}
@@ -41,11 +41,11 @@ export default class CreateAccount extends React.Component {
 	onPressButton(){
 		Alert.alert('Button has been pressed!');
 	}
-	
+
 	onPasswordVerification(wordList, password) {
         const {score} = zxcvbn(password, [...(this.state.fullName.split(' ')), this.state.email]);
         const isValid = password.length >= 6 && score > 2;
-        
+
 		if(isValid) {
 			// On Valid Password
             Alert.alert(`Password: ${password}, Score: ${score}, Word: ${wordList[score]}`);
@@ -55,7 +55,7 @@ export default class CreateAccount extends React.Component {
 			Alert.alert('Alert Message: ', 'Your password is not strong enough.')
 		}
 	}
-	
+
 	onPasswordConfirm(text) {
 		if(this.state.password === text) {
 			// On Matching Password
@@ -65,7 +65,7 @@ export default class CreateAccount extends React.Component {
 			Alert.alert('Alert Message: ', 'Your password does not match.')
 		}
 	}
-	
+
 	/**
 	 *
 	 * Renders the fields

@@ -12,27 +12,27 @@ import {
   View
 } from 'react-native';
 // for testing
-import CreateEvent from './core/CreateEvent';
-import CreateAccount from './core/CreateAccount';
-//<CreateAccount />
+import Database from './core/repo/Database';
 
+//const realmdb = require('Database');
 const Realm = require('realm');
 
 class AlumniApp extends Component {
   //this.state = {text: ''};
-  render() {
-    let realm = new Realm({
-      schema: [{ name: 'Test', properties: { name: 'string' } }]
-    });
 
-    realm.write(() => {
-      realm.create('Test', { name: 'Testy' });
-    });
+  render() {
+      Database.createDatabase();
+      Database.add({"name":"User", "properties": {
+          "id":1,
+          "username": "blah",
+          "password": "secret",
+          "email": "abc1234@rit.edu" }});
+
     return (
       <View style={styles.container}>
+               <Text>{Database.query("User")}
+               </Text>
 
-        <CreateEvent />
-        <CreateAccount />
       </View>
     );
   }

@@ -42,7 +42,7 @@ export default class CreateEvent extends React.Component {
 					onChangeText={(text) => this.setState({ eventName: text })}
 					value={this.state.eventName}
 				/>
-				
+
 				<Text>Choose Date and Time:</Text>
 				<DatePicker
 					style={{ width: 200 }}
