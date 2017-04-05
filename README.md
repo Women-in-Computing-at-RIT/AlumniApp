@@ -24,8 +24,10 @@ a green box; click on it and copy the link to your clipboard then run, while ins
 ## Installing Ionic
 If you haven't installed nodejs then follow [the instructions to install it](https://nodejs.org/en/download/).
 Then install ionic using the following command:
+
     npm install -g cordova ionic
 
 ## Running the app
 Use this command to run the app in your browser.
+
     ionic serve --lab
