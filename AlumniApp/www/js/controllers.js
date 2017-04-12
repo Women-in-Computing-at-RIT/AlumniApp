@@ -29,6 +29,16 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  // Open the register modal
+  $scope.register = function(){
+    $scope.modal.show();
+  };
+
+  // Triggered in the register modal to close it
+   $scope.closeRegister=function(){
+    $scope.modal.show();
+  };
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -50,6 +60,78 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
+})
+
+.controller('signupCtrl', function($scope,$http,$ionicPopup,$state,$ionicHistory) {
+
+	$scope.signup=function(data){
+
+			var link = 'http://www.website.com/foodcart/server_side/signup.php';
+
+			//using http post as we are passing password.
+			$http.post(link, {n : data.name, un : data.username, ps : data.password , ph: data.phone , add : data.address , pin : data.pincode })
+			.then(function (res){	 //if a response is recieved from the server.
+
+				$scope.response = res.data.result; //contains Register Result
+
+				//Shows the respective popup and removes back link
+				if($scope.response.created=="1"){
+						$scope.title="Account Created!";
+						$scope.template="Your account has been successfully created!";
+
+						//no back option
+						$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+						});
+						// the user is redirected to login page after sign up
+						$state.go('login', {}, {location: "replace", reload: true});
+
+				}else if($scope.response.exists=="1"){
+					$scope.title="Email Already exists";
+					$scope.template="Please click forgot password if necessary";
+
+				}else{
+					$scope.title="Failed";
+					$scope.template="Contact Our Technical Team";
+				}
+
+				var alertPopup = $ionicPopup.alert({
+						title: $scope.title,
+						template: $scope.template
+				});
+			});
+	}
+})
+
+.controller('profileCtrl', function($scope,$rootScope,$ionicHistory,$state) {
+
+		// loads value from the loggin session
+		$scope.loggedin_name= sessionStorage.getItem('loggedin_name');
+		$scope.loggedin_id= sessionStorage.getItem('loggedin_id');
+		$scope.loggedin_phone= sessionStorage.getItem('loggedin_phone');
+		$scope.loggedin_address= sessionStorage.getItem('loggedin_address');
+		$scope.loggedin_pincode= sessionStorage.getItem('loggedin_pincode');
+
+		//logout function
+		$scope.logout=function(){
+
+				//delete all the sessions
+				delete sessionStorage.loggedin_name;
+				delete sessionStorage.loggedin_id;
+				delete sessionStorage.loggedin_phone;
+				delete sessionStorage.loggedin_address;
+				delete sessionStorage.loggedin_pincode;
+
+				// remove the profile page backlink after logout.
+				$ionicHistory.nextViewOptions({
+					disableAnimate: true,
+					disableBack: true
+				});
+
+				// After logout you will be redirected to the menu page,with no backlink
+				$state.go('menu', {}, {location: "replace", reload: true});
+		};
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
