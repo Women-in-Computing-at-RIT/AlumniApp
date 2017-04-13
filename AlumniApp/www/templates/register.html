@@ -1,37 +1,48 @@
-<ion-view title="Signup">
-  <ion-content padding="'true'" scroll="false" class="has-header">
-    <form class="list">
-      <ion-list>
+<ion-modal-view title="Register">
+  <ion-header-bar>
+    <h1 class="title">Register</h1>
+    <div class="buttons">
+      <button class="button button-blue" ng-click="closeRegister()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-list>
+    <form ng-submit="doRegister()">
+      <div class="list">
         <label class="item item-input">
-          <span class="input-label">Name</span>
-
-          //Note: data object contains all the detials about the user registering.
-          <input type="text" placeholder="" ng-model="data.name">
+          <span class="input-label">FIrst Name</span>
+          <input type="text" ng-model="loginData.firstname">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Last Name</span>
+          <input type="text" ng-model="loginData.lastname">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">E-mail Address</span>
+          <input type="text" ng-model="loginData.email">
         </label>
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input type="email" placeholder="" ng-model="data.username">
+          <input type="text" ng-model="loginData.username">
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input type="password" placeholder="" ng-model="data.password">
+          <input type="password" ng-model="loginData.password">
         </label>
         <label class="item item-input">
-          <span class="input-label">Phone</span>
-          <input type="number" placeholder="" ng-model="data.phone">
+          <span class="input-label">Confirm Password</span>
+          <input type="password" ng-model="loginData.password">
         </label>
-      </ion-list>
-      <label class="item item-input">
-        <span class="input-label">Address</span>
-        <input type="text" placeholder="" ng-model="data.address">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Pincode</span>
-        <input type="number" placeholder="" ng-model="data.pincode">
-      </label>
 
-      //data object is passed to the signup()
-      <button ng-click="signup(data)" class="button button-stable button-block ">Sign up</button>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Register</button>
+        </label>
+
+        <label class="item">
+          <a href="login.html" class="button button-positive button-clear button-block ">Already a member?</a>
+
+        </label>
+      </div>
+
     </form>
-  </ion-content>
-</ion-view>
+  </ion-list>
+</ion-modal-view>
