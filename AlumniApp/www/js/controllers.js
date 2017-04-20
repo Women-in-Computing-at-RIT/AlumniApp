@@ -29,15 +29,7 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
-  // Open the register modal
-  $scope.register = function(){
-    $scope.modal.show();
-  };
 
-  // Triggered in the register modal to close it
-   $scope.closeRegister=function(){
-    $scope.modal.show();
-  };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
@@ -50,6 +42,38 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
+
+.controller('RegisterCtrl', function(scope, $ionicModal, $timeout){
+
+    $scope.RegisterData = {};
+  //Create the register modal
+    $ionicModal.fromTemplateUrl('templates/register.html', {
+      scope: $scope
+    }).then(function(modal){
+        $scope.modal = modal;
+     });
+
+    // Open the register modal
+    $scope.register = function(){
+      $scope.modal.show();
+    };
+
+    // Triggered in the register modal to close it
+     $scope.closeRegister=function(){
+      $scope.modal.hide();
+    };
+    // Perform the login action when the user submits the login form
+      $scope.doRegister = function() {
+        console.log('Doing Registering', $scope.RegisterData);
+
+        // Simulate a login delay. Remove this and replace with your login
+        // code if using a login system
+        $timeout(function() {
+          $scope.closeRegister();
+        }, 1000);
+      };
+    })
+
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [

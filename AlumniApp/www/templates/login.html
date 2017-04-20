@@ -1,5 +1,11 @@
 <ion-view title="Login">
-  <ion-content padding="'true'" class="has-header">
+   <ion-header-bar>
+        <h1 class="title">Login</h1>
+        <div class="buttons">
+          <button class="button button-blue" ng-click="closeLogin()">Close</button>
+        </div>
+      </ion-header-bar>
+  <ion-content>
     <form class="list" >
       <ion-list>
         <label class="item item-input">
@@ -17,7 +23,7 @@
 
 
       <button  class="button button-stable button-block " ng-click="login()" >Log in</button>
-      <a href="register.html" class="button button-positive button-clear button-block ">Or create an account</a>
+      <a ng-click="register()" class="button button-positive button-clear button-block ">Or create an account</a>
     </form>
   </ion-content>
 </ion-view>
