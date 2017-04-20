@@ -36,8 +36,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/register',
       views: {
               'menuContent': {
-                templateUrl: 'templates/register.html'
-                
+                templateUrl: 'templates/register.html',
+                controller: 'RegisterCtrl'
               }
             }
     })
@@ -47,6 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/search.html'
+        //controller: 'CalendarDemoCtrl'
       }
     }
   })
