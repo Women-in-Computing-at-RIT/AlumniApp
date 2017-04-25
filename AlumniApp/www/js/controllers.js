@@ -63,7 +63,6 @@ angular.module('starter.controllers', ['ui.rCalendar'])
       $scope.modal.show();
     };
 
-<<<<<<< HEAD
     // Perform the login action when the user submits the login form
       $scope.doRegister = function() {
         console.log('Doing Registering', $scope.RegisterData);
