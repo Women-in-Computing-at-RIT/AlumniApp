@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ui.rCalendar'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('RegisterCtrl', function(scope, $ionicModal, $timeout){
+.controller('RegisterCtrl', function($scope, $ionicModal, $timeout){
 
     $scope.RegisterData = {};
   //Create the register modal
@@ -54,15 +54,16 @@ angular.module('starter.controllers', [])
         $scope.modal = modal;
      });
 
+     // Triggered in the register modal to close it
+      $scope.closeRegister=function(){
+       $scope.modal.hide();
+     };
+
     // Open the register modal
     $scope.register = function(){
       $scope.modal.show();
     };
 
-    // Triggered in the register modal to close it
-     $scope.closeRegister=function(){
-      $scope.modal.hide();
-    };
     // Perform the login action when the user submits the login form
       $scope.doRegister = function() {
         console.log('Doing Registering', $scope.RegisterData);
@@ -89,9 +90,9 @@ angular.module('starter.controllers', [])
 
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
-/*
-.controller('CalendarDemoCtrl', function ($scope) {
+})
+
+.controller('CalendarDemoCtrl', function ($scope, $http) {
     'use strict';
     $scope.calendar = {};
     $scope.changeMode = function (mode) {
@@ -99,7 +100,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.loadEvents = function () {
-        $scope.calendar.eventSource = createRandomEvents();
+        $scope.calendar.eventSource = importEvents();
     };
 
     $scope.onEventSelected = function (event) {
@@ -126,6 +127,43 @@ angular.module('starter.controllers', [])
     $scope.onTimeSelected = function (selectedTime, events, disabled) {
         console.log('Selected time: ' + selectedTime + ', hasEvents: ' + (events !== undefined && events.length !== 0) + ', disabled: ' + disabled);
     };
+
+    function importEvents() {
+        var events = [];
+        $http.get('js/events.json').success(function(data){
+            for(var i=0; i<data.Events.length; i++){
+                var date = data.Events[i].beginningTime;
+                var eventType = data.Events[i].eventType;
+                var startDay = data.Events[i].beginningTime;
+                var endDay = data.Events[i].endTime;
+                var startTime;
+                var endTime;
+                if (data.Events[i].eventType === 0) {
+                    startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
+                    if (endDay === startDay) {
+                        endDay += 1;
+                    }
+                    endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
+                    events.push({
+                        title: 'All Day - ' + data.Events[i].title,
+                        startTime: startTime,
+                        endTime: endTime,
+                        allDay: true
+                    });
+                } else {
+                    startTime = new Date(startDay.getFullYear(), startDay.getMonth(), startDay.getDate(), 0, startDay.getMinutes());
+                    endTime = new Date(endDay.getFullYear(), endDay.getMonth(), endDay.getDate(), 0, endDay.getMinutes());
+                    events.push({
+                        title: 'Event - ' + data.Events[i].title,
+                        startTime: startDay,
+                        endTime: endDay,
+                        allDay: false
+                    });
+                }
+            return events;
+            }
+        })
+    }
 
     function createRandomEvents() {
         var events = [];
@@ -163,4 +201,4 @@ angular.module('starter.controllers', [])
         }
         return events;
     }
-});*/
+});

@@ -46,8 +46,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/search',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
-        //controller: 'CalendarDemoCtrl'
+        templateUrl: 'templates/search.html',
+        controller: 'CalendarDemoCtrl'
       }
     }
   })
