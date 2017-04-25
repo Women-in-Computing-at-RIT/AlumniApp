@@ -1,0 +1,60 @@
+<ion-view title="Create Event">
+    <!--<ion-header-bar class="bar bar-header">
+        <ion-navbar>
+            <button class="button button-clear ion-navicon-round pull-left"></button>
+            <h1 class="title">Create Event</h1>
+            <button class="button button-clear ion-search pull-right"></button>
+        </ion-navbar>
+    </ion-header-bar>-->
+
+    <ion-content>
+        <form class="list">
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" placeholder="" ng-model="event.name">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Time</span>
+                    <input ng-model="event.time" type="time" placeholder="ex. 10:30:00" >
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Date</span>
+                    <input type="month" placeholder="ex. 04/20/2017" ng-model="event.date">
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Location</span>
+                    <input type="text" placeholder="" ng-model="event.location">
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Description</span>
+                    <input type="text" placeholder="" ng-model="event.description">
+                </label>
+
+            </ion-list>
+
+            <div class="spacer" style="height: 40px;"></div>
+            <span width="80%">
+            <button class="button button-positive button-block" ng-click="onsubmit()">Create</button>
+            </span>
+        </form>
+    </ion-content>
+
+    <!--<ion-footer-bar class="bar bar-footer bar-positive">
+        <div class="row">
+            <span class="col text-left">
+                    <button class="button button-clear ion-chevron-left"></button>
+            </span>
+            <span class="col text-center">
+                    <button class="button button-clear ion-android-radio-button-off"></button>
+            </span>
+            <span class="col text-right">
+                    <button class="button ion-android-checkbox-outline-blank button-clear"></button>
+            </span>
+        </div>
+    </ion-footer-bar>-->
+</ion-view>
