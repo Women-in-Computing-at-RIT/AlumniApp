@@ -1,3 +1,28 @@
+function writeToFile(fileName, jsonData){
+    $cordovaFile.writeFile(cordova.file.dataDirectory, ("js/json/"+fileName), JSON.stringify(jsonData), true)
+      .then(function (success) {
+        console.log("We gud Bruh");
+      }, function (error) {
+        console.log(error);
+      });
+}
+
+function getFromFile(fileName, $http){
+    return {
+        method: function(){
+            var json = null;
+            $http.get('js/json/'+fileName).success(function(data){
+                json = data;
+            }).then(function(){
+                console.log("waiting");
+            })
+            return json;
+        }
+    };
+
+}
+
+
 angular.module('starter.controllers', ['ui.rCalendar'])
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
@@ -161,52 +186,31 @@ angular.module('starter.controllers', ['ui.rCalendar'])
         })
         return events;
     }
-
-    function createRandomEvents() {
-        var events = [];
-        for (var i = 0; i < 50; i += 1) {
-            var date = new Date();
-            var eventType = Math.floor(Math.random() * 2);
-            var startDay = Math.floor(Math.random() * 90) - 45;
-            var endDay = Math.floor(Math.random() * 2) + startDay;
-            var startTime;
-            var endTime;
-            if (eventType === 0) {
-                startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-                if (endDay === startDay) {
-                    endDay += 1;
-                }
-                endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-                events.push({
-                    title: 'All Day - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: true
-                });
-            } else {
-                var startMinute = Math.floor(Math.random() * 24 * 60);
-                var endMinute = Math.floor(Math.random() * 180) + startMinute;
-                startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-                endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-                events.push({
-                    title: 'Event - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: false
-                });
-            }
-        }
-        return events;
-    }
 })
 
-.controller('CreateEventCtrl', function ($scope, $stateParams) {
+.controller('CreateEventCtrl', function ($scope, $stateParams, $http) {
   $scope.event = { name: "", time: Date.now(), date: Date.now(), location: "", description: "" }
   $scope.onsubmit = function () {
-    alert($scope.event.name);
+    /*alert($scope.event.name);
     alert($scope.event.time);
     alert($scope.event.date);
     alert($scope.event.location);
-    alert($scope.event.description);
+    alert($scope.event.description);*/
+
+    var data = getFromFile('events.json', $http).method().then(function(result){
+        return result;
+    });
+    console.log(data);
+    var newID = data.Events.length+1;
+    data.Events.push({
+        id: newID,
+        eventType: 1,
+        beginningTime: $scope.event.time,
+        endTime: $scope.event.time,
+        title: $scope.event.name,
+        description: $scope.event.description,
+        location: $scope.event.location
+    });
+    writeToFile('events.json', data);
   }
 });

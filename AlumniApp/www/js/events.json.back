@@ -1,0 +1,13 @@
+{
+  "Events":[
+    {
+      "id": 0,
+      "eventType": 1,
+      "beginningTime": "May 6, 2017 11:00:00",
+      "endTime": "May 6, 2017 12:00:00",
+      "title": "Super Event",
+      "description": "Event for super people",
+      "location": "70-2600"
+    }
+  ]
+}
