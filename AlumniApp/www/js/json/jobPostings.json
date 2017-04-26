@@ -1,0 +1,13 @@
+{
+    "JobPostings":[
+        {
+            "id": 1,
+            "userID": 1,
+            "companyName": "Pear inc.",
+            "location": "Plastic Valley",
+            "jobTitle": "Mobile Developer",
+            "jobDescription": "Develop mobile apps for our Pear phones.",
+            "duration": "Summer - start in May"
+        }
+    ]
+}

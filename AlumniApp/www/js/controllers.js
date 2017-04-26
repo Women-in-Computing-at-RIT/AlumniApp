@@ -127,7 +127,7 @@ angular.module('starter.controllers', ['ui.rCalendar'])
 
     function importEvents() {
         var events = [];
-        $http.get('js/events.json').success(function(data){
+        $http.get('js/json/events.json').success(function(data){
             for(var i=0; i<data.Events.length; i++){
                 var date = new Date(data.Events[i].beginningTime);
                 var eventType = data.Events[i].eventType;

@@ -1,0 +1,23 @@
+{
+    "Profiles": [
+        {
+            "id": 1,
+            "name": "Regina Locicero",
+            "photo": "#",
+            "major": "Web and Mobile Computing",
+            "gradYear": "2019",
+            "connections": [2],
+            "workExperience": [
+                {
+                    "companyName": "RIT",
+                    "location": "Rochester",
+                    "jobTitle": "Notetaker",
+                    "jobDescription": "Taking notes for Deaf and Hard of hearing students.",
+                    "timeStart": "Spring 2016",
+                    "timeEnd": "Present"
+                }
+            ],
+            "jobPostings": [1]
+        }
+    ]
+}
