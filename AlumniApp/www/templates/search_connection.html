@@ -1,0 +1,15 @@
+<ion-view title="Create Job Post">
+    <ion-content>
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="search by last name" ng-model="searchQuery.last_name" />
+        </label>
+        <ion-list>
+            <ion-item ng-repeat="item in searchlist | filter:searchQuery">
+                <div><i class="icon ion-android-person">  </i> {{item.first_name }} {{item.last_name}}</div>
+                <div id="email-block">{{item.email}}</div>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

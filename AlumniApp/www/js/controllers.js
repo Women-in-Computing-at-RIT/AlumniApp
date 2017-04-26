@@ -1,3 +1,9 @@
+var objects = [
+  { 'id': 1, 'first_name': 'Abby', 'last_name': 'Tran', 'email': 'abby@gmail.com' },
+  { 'id': 2, 'first_name': 'David', 'last_name': 'Quach', 'email': 'david@yahoo.com' },
+  { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com' },
+];
+
 angular.module('starter.controllers', [])
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
@@ -96,3 +102,20 @@ angular.module('starter.controllers', [])
       alert($scope.event.description);
     }
   })
+
+  .controller('CreateJobPostCtrl', function ($scope, $stateParams) {
+    $scope.job = { name: "", location: "", start_date: Date.now(), description: "" }
+    $scope.onsubmit = function () {
+      alert($scope.job.name);
+      alert($scope.job.location);
+      alert($scope.job.start_date);
+      alert($scope.job.description);
+    }
+  })
+
+  .controller('SearchCtrl', function ($scope, $stateParams) {
+    $scope.searchlist = objects;
+
+  }
+  )
+

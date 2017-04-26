@@ -52,12 +52,23 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       })
 
+      .state('app.create_jobpost', {
+        url: '/create_jobpost',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/create_jobpost.html',
+            controller: 'CreateJobPostCtrl'
+          }
+        }
+      })
+
 
       .state('app.search', {
         url: '/search',
         views: {
           'menuContent': {
-            templateUrl: 'templates/search.html'
+            templateUrl: 'templates/search_connection.html',
+            controller: 'SearchCtrl'
           }
         }
       })
