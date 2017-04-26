@@ -131,10 +131,10 @@ angular.module('starter.controllers', ['ui.rCalendar'])
         var events = [];
         $http.get('js/events.json').success(function(data){
             for(var i=0; i<data.Events.length; i++){
-                var date = data.Events[i].beginningTime;
+                var date = new Date(data.Events[i].beginningTime);
                 var eventType = data.Events[i].eventType;
-                var startDay = data.Events[i].beginningTime;
-                var endDay = data.Events[i].endTime;
+                var startDay = new Date(data.Events[i].beginningTime);
+                var endDay = new Date(data.Events[i].endTime);
                 var startTime;
                 var endTime;
                 if (data.Events[i].eventType === 0) {
@@ -159,9 +159,9 @@ angular.module('starter.controllers', ['ui.rCalendar'])
                         allDay: false
                     });
                 }
-            return events;
             }
         })
+        return events;
     }
 
     function createRandomEvents() {
