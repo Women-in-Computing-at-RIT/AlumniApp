@@ -98,10 +98,6 @@ angular.module('starter.controllers', ['ui.rCalendar'])
         $scope.calendar.mode = mode;
     };
 
-    $scope.loadEvents = function () {
-        $scope.calendar.eventSource = importEvents();
-    };
-
     $scope.onEventSelected = function (event) {
         console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
     };
@@ -126,6 +122,8 @@ angular.module('starter.controllers', ['ui.rCalendar'])
     $scope.onTimeSelected = function (selectedTime, events, disabled) {
         console.log('Selected time: ' + selectedTime + ', hasEvents: ' + (events !== undefined && events.length !== 0) + ', disabled: ' + disabled);
     };
+
+    $scope.calendar.eventSource = importEvents();
 
     function importEvents() {
         var events = [];
