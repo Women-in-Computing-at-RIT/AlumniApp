@@ -1,40 +1,40 @@
 <ion-view title="Create Job Post">
-    <ion-scroll zooming="true" direction="xy" style="width: 100%; height: 100%" scrollbar-y="false" scrollbar-x="false">
-        <ion-content>
-            <form class="list">
-                <div class="list card">
-                    <div class="item item-divider item-positive">
-                        Job
-                    </div>
-                    <ion-list>
-                        <label class="item item-input">
+
+    <ion-content>
+        <form class="list">
+            <div class="list card">
+                <div class="item item-divider item-positive">
+                    Job
+                </div>
+                <ion-list>
+                    <label class="item item-input">
                     <span class="input-label">Name</span>
                     <input type="text" placeholder="" ng-model="job.name">
                 </label>
 
-                        <label class="item item-input">
+                    <label class="item item-input">
                     <span class="input-label">Location</span>
                     <input ng-model="job.location" type="text" placeholder="" >
                 </label>
 
-                        <label class="item item-input">
+                    <label class="item item-input">
                     <span class="input-label">Start Date</span>
                     <input type="date" placeholder="ex. 04/20/2017" ng-model="job.start_date">
                 </label>
 
-                        <label class="item item-input item-stacked-label">
+                    <label class="item item-input item-stacked-label">
                     <span class="input-label">Description</span>
                     <textarea type="text" rows="8" placeholder="max length: 100" ng-model="job.description" ></textarea>
                 </label>
-                    </ion-list>
-                </div>
+                </ion-list>
+            </div>
 
-                <div class="spacer" style="height: 40px;"></div>
-                <span width="80%">
+            <div class="spacer" style="height: 40px;"></div>
+            <span width="80%">
                          <button class="button button-outline button-positive" ng-click="onsubmit()">Create</button>
                     </span>
 
-            </form>
-        </ion-content>
-    </ion-scroll>
+        </form>
+    </ion-content>
+
 </ion-view>
