@@ -40,3 +40,8 @@
 {
 	display: none;
 }
+
+.main_title {
+    width: 100%;
+    text-align: center;
+}
