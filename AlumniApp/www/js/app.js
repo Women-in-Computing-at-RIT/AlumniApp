@@ -32,25 +32,25 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'AppCtrl'
       })
 
-  .state('app.register', {
-      url: '/register',
-      views: {
-              'menuContent': {
-                templateUrl: 'templates/register.html',
-                controller: 'RegisterCtrl'
-              }
-            }
-    })
+      .state('app.register', {
+        url: '/register',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/register.html',
+            controller: 'RegisterCtrl'
+          }
+        }
+      })
 
-  .state('app.calendar', {
-    url: '/calendar',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/calendar.html',
-        controller: 'CalendarDemoCtrl'
-      }
-    }
-  })
+      .state('app.calendar', {
+        url: '/calendar',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/calendar.html',
+            controller: 'CalendarDemoCtrl'
+          }
+        }
+      })
 
       .state('app.create_event', {
         url: '/create_event',
@@ -69,7 +69,29 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             templateUrl: 'templates/home.html'
           }
         }
-      });
+      })
+
+      .state('app.create_jobpost', {
+        url: '/create_jobpost',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/create_jobpost.html',
+            controller: 'CreateJobPostCtrl'
+          }
+        }
+      })
+
+
+      .state('app.search', {
+        url: '/search',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/search_connection.html',
+            controller: 'SearchCtrl'
+          }
+        }
+      })
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/home');
   });

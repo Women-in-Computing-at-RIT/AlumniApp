@@ -1,29 +1,36 @@
-function writeToFile(fileName, jsonData){
-    $cordovaFile.writeFile(cordova.file.dataDirectory, ("js/json/"+fileName), JSON.stringify(jsonData), true)
-      .then(function (success) {
-        console.log("We gud Bruh");
-      }, function (error) {
-        console.log(error);
-      });
+var objects = [
+  { 'id': 1, 'first_name': 'Abby', 'last_name': 'Tran', 'email': 'abby@gmail.com' },
+  { 'id': 2, 'first_name': 'David', 'last_name': 'Quach', 'email': 'david@yahoo.com' },
+  { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com' },
+];
+
+function writeToFile(fileName, jsonData) {
+  $cordovaFile.writeFile(cordova.file.dataDirectory, ("js/json/" + fileName), JSON.stringify(jsonData), true)
+    .then(function (success) {
+      console.log("We gud Bruh");
+    }, function (error) {
+      console.log(error);
+    });
 }
 
-function getFromFile(fileName, $http){
-    return {
-        method: function(){
-            var json = null;
-            $http.get('js/json/'+fileName).success(function(data){
-                json = data;
-            }).then(function(){
-                console.log("waiting");
-            })
-            return json;
-        }
-    };
+function getFromFile(fileName, $http) {
+  return {
+    method: function () {
+      var json = null;
+      $http.get('js/json/' + fileName).success(function (data) {
+        json = data;
+      }).then(function () {
+        console.log("waiting");
+      })
+      return json;
+    }
+  };
 
 }
 
 
 angular.module('starter.controllers', ['ui.rCalendar'])
+
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
@@ -78,10 +85,10 @@ angular.module('starter.controllers', ['ui.rCalendar'])
       $scope.modal = modal;
     });
 
-     // Triggered in the register modal to close it
-      $scope.closeRegister=function(){
-       $scope.modal.hide();
-     };
+    // Triggered in the register modal to close it
+    $scope.closeRegister = function () {
+      $scope.modal.hide();
+    };
 
     // Open the register modal
     $scope.register = function () {
@@ -89,105 +96,105 @@ angular.module('starter.controllers', ['ui.rCalendar'])
     };
 
     // Perform the login action when the user submits the login form
-      $scope.doRegister = function() {
-        console.log('Doing Registering', $scope.RegisterData);
+    $scope.doRegister = function () {
+      console.log('Doing Registering', $scope.RegisterData);
 
-        // Simulate a login delay. Remove this and replace with your login
-        // code if using a login system
-        $timeout(function() {
-          $scope.closeRegister();
-        }, 1000);
-      };
-    })
+      // Simulate a login delay. Remove this and replace with your login
+      // code if using a login system
+      $timeout(function () {
+        $scope.closeRegister();
+      }, 1000);
+    };
+  })
 
 
-.controller('CalendarDemoCtrl', function ($scope, $http) {
+  .controller('CalendarDemoCtrl', function ($scope, $http) {
     'use strict';
     $scope.calendar = {};
     $scope.changeMode = function (mode) {
-        $scope.calendar.mode = mode;
+      $scope.calendar.mode = mode;
     };
 
     $scope.onEventSelected = function (event) {
-        console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+      console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
     };
 
     $scope.onViewTitleChanged = function (title) {
-        $scope.viewTitle = title;
+      $scope.viewTitle = title;
     };
 
     $scope.today = function () {
-        $scope.calendar.currentDate = new Date();
+      $scope.calendar.currentDate = new Date();
     };
 
     $scope.isToday = function () {
-        var today = new Date(),
-            currentCalendarDate = new Date($scope.calendar.currentDate);
+      var today = new Date(),
+        currentCalendarDate = new Date($scope.calendar.currentDate);
 
-        today.setHours(0, 0, 0, 0);
-        currentCalendarDate.setHours(0, 0, 0, 0);
-        return today.getTime() === currentCalendarDate.getTime();
+      today.setHours(0, 0, 0, 0);
+      currentCalendarDate.setHours(0, 0, 0, 0);
+      return today.getTime() === currentCalendarDate.getTime();
     };
 
     $scope.onTimeSelected = function (selectedTime, events, disabled) {
-        console.log('Selected time: ' + selectedTime + ', hasEvents: ' + (events !== undefined && events.length !== 0) + ', disabled: ' + disabled);
+      console.log('Selected time: ' + selectedTime + ', hasEvents: ' + (events !== undefined && events.length !== 0) + ', disabled: ' + disabled);
     };
 
     $scope.calendar.eventSource = importEvents();
 
     function importEvents() {
-        var events = [];
-        $http.get('js/json/events.json').success(function(data){
-            for(var i=0; i<data.Events.length; i++){
-                var date = new Date(data.Events[i].beginningTime);
-                var eventType = data.Events[i].eventType;
-                var startDay = new Date(data.Events[i].beginningTime);
-                var endDay = new Date(data.Events[i].endTime);
-                var startTime;
-                var endTime;
-                if (data.Events[i].eventType === 0) {
-                    startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-                    if (endDay === startDay) {
-                        endDay += 1;
-                    }
-                    endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-                    events.push({
-                        title: 'All Day - ' + data.Events[i].title,
-                        startTime: startTime,
-                        endTime: endTime,
-                        allDay: true
-                    });
-                } else {
-                    startTime = new Date(startDay.getFullYear(), startDay.getMonth(), startDay.getDate(), 0, startDay.getMinutes());
-                    endTime = new Date(endDay.getFullYear(), endDay.getMonth(), endDay.getDate(), 0, endDay.getMinutes());
-                    events.push({
-                        title: 'Event - ' + data.Events[i].title,
-                        startTime: startDay,
-                        endTime: endDay,
-                        allDay: false
-                    });
-                }
+      var events = [];
+      $http.get('js/json/events.json').success(function (data) {
+        for (var i = 0; i < data.Events.length; i++) {
+          var date = new Date(data.Events[i].beginningTime);
+          var eventType = data.Events[i].eventType;
+          var startDay = new Date(data.Events[i].beginningTime);
+          var endDay = new Date(data.Events[i].endTime);
+          var startTime;
+          var endTime;
+          if (data.Events[i].eventType === 0) {
+            startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
+            if (endDay === startDay) {
+              endDay += 1;
             }
-        })
-        return events;
+            endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
+            events.push({
+              title: 'All Day - ' + data.Events[i].title,
+              startTime: startTime,
+              endTime: endTime,
+              allDay: true
+            });
+          } else {
+            startTime = new Date(startDay.getFullYear(), startDay.getMonth(), startDay.getDate(), 0, startDay.getMinutes());
+            endTime = new Date(endDay.getFullYear(), endDay.getMonth(), endDay.getDate(), 0, endDay.getMinutes());
+            events.push({
+              title: 'Event - ' + data.Events[i].title,
+              startTime: startDay,
+              endTime: endDay,
+              allDay: false
+            });
+          }
+        }
+      })
+      return events;
     }
-})
+  })
 
-.controller('CreateEventCtrl', function ($scope, $stateParams, $http) {
-  $scope.event = { name: "", time: Date.now(), date: Date.now(), location: "", description: "" }
-  $scope.onsubmit = function () {
-    /*alert($scope.event.name);
-    alert($scope.event.time);
-    alert($scope.event.date);
-    alert($scope.event.location);
-    alert($scope.event.description);*/
+  .controller('CreateEventCtrl', function ($scope, $stateParams, $http) {
+    $scope.event = { name: "", time: Date.now(), date: Date.now(), location: "", description: "" }
+    $scope.onsubmit = function () {
+      /*alert($scope.event.name);
+      alert($scope.event.time);
+      alert($scope.event.date);
+      alert($scope.event.location);
+      alert($scope.event.description);*/
 
-    var data = getFromFile('events.json', $http).method().then(function(result){
+      var data = getFromFile('events.json', $http).method().then(function (result) {
         return result;
-    });
-    console.log(data);
-    var newID = data.Events.length+1;
-    data.Events.push({
+      });
+      console.log(data);
+      var newID = data.Events.length + 1;
+      data.Events.push({
         id: newID,
         eventType: 1,
         beginningTime: $scope.event.time,
@@ -195,7 +202,27 @@ angular.module('starter.controllers', ['ui.rCalendar'])
         title: $scope.event.name,
         description: $scope.event.description,
         location: $scope.event.location
-    });
-    writeToFile('events.json', data);
+      });
+      writeToFile('events.json', data);
+    }
+  })
+
+
+
+  .controller('CreateJobPostCtrl', function ($scope, $stateParams) {
+    $scope.job = { name: "", location: "", start_date: Date.now(), description: "" }
+    $scope.onsubmit = function () {
+      alert($scope.job.name);
+      alert($scope.job.location);
+      alert($scope.job.start_date);
+      alert($scope.job.description);
+    }
+  })
+
+  .controller('SearchCtrl', function ($scope, $stateParams) {
+    $scope.searchlist = objects;
+
   }
-});
+  );
+
+

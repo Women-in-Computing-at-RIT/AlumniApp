@@ -23,11 +23,20 @@
 .content .list.list-inset{
     height: (100%/3);
     width: 90%;
-    display: inline-block;
+    display: inline-block
 }
 
+.button.button-positive {
+    width: 30%;
+    margin: auto;
+    display: block;
+}
 
+.button.button-positive.button-clear.button-block {
+    width: 100%;
+}
 
-
-
-
+.scroll-bar-indicator
+{
+	display: none;
+}

@@ -1,5 +1,6 @@
 <ion-view title="Create Event">
-    <!--<ion-header-bar class="bar bar-header">
+    <ion-scroll zooming="true" direction="xy" style="width: 100%; height: 100%" scrollbar-y="false" scrollbar-x="false">
+        <!--<ion-header-bar class="bar bar-header">
         <ion-navbar>
             <button class="button button-clear ion-navicon-round pull-left"></button>
             <h1 class="title">Create Event</h1>
@@ -7,44 +8,52 @@
         </ion-navbar>
     </ion-header-bar>-->
 
-    <ion-content>
-        <form class="list">
-            <ion-list>
-                <label class="item item-input">
+        <ion-content>
+            <form class="list">
+                <div class="list card">
+                    <div class="item item-divider item-positive">
+                        Event
+                    </div>
+                    <ion-item>
+                        <ion-list>
+                            <label class="item item-input">
                     <span class="input-label">Name</span>
                     <input type="text" placeholder="" ng-model="event.name">
                 </label>
 
-                <label class="item item-input">
+                            <label class="item item-input">
                     <span class="input-label">Time</span>
                     <input ng-model="event.time" type="time" placeholder="ex. 10:30:00" >
                 </label>
 
-                <label class="item item-input">
+                            <label class="item item-input">
                     <span class="input-label">Date</span>
-                    <input type="month" placeholder="ex. 04/20/2017" ng-model="event.date">
+                    <input type="date" placeholder="ex. 04/20/2017" ng-model="event.date">
                 </label>
 
-                <label class="item item-input item-stacked-label">
+                            <label class="item item-input item-stacked-label">
                     <span class="input-label">Location</span>
                     <input type="text" placeholder="" ng-model="event.location">
                 </label>
 
-                <label class="item item-input item-stacked-label">
+                            <label class="item item-input item-stacked-label">
                     <span class="input-label">Description</span>
-                    <input type="text" placeholder="" ng-model="event.description">
+                    <textarea type="text" rows="8" placeholder="" ng-model="event.description"></textarea>
                 </label>
 
-            </ion-list>
+                        </ion-list>
+                    </ion-item>
+                </div>
 
-            <div class="spacer" style="height: 40px;"></div>
-            <span width="80%">
-            <button class="button button-positive button-block" ng-click="onsubmit()">Create</button>
-            </span>
-        </form>
-    </ion-content>
+                <div class="spacer" style="height: 40px;"></div>
 
-    <!--<ion-footer-bar class="bar bar-footer bar-positive">
+                <button class="button button-outline button-positive" ng-click="onsubmit()">Create</button>
+
+            </form>
+
+        </ion-content>
+
+        <!--<ion-footer-bar class="bar bar-footer bar-positive">
         <div class="row">
             <span class="col text-left">
                     <button class="button button-clear ion-chevron-left"></button>
@@ -57,4 +66,5 @@
             </span>
         </div>
     </ion-footer-bar>-->
+    </ion-scroll>
 </ion-view>
