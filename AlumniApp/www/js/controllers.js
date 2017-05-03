@@ -4,31 +4,6 @@ var objects = [
   { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com' },
 ];
 
-function writeToFile(fileName, jsonData) {
-  $cordovaFile.writeFile(cordova.file.dataDirectory, ("js/json/" + fileName), JSON.stringify(jsonData), true)
-    .then(function (success) {
-      console.log("We gud Bruh");
-    }, function (error) {
-      console.log(error);
-    });
-}
-
-function getFromFile(fileName, $http) {
-  return {
-    method: function () {
-      var json = null;
-      $http.get('js/json/' + fileName).success(function (data) {
-        json = data;
-      }).then(function () {
-        console.log("waiting");
-      })
-      return json;
-    }
-  };
-
-}
-
-
 angular.module('starter.controllers', ['ui.rCalendar'])
 
 
@@ -224,5 +199,3 @@ angular.module('starter.controllers', ['ui.rCalendar'])
 
   }
   );
-
-
