@@ -1,5 +1,8 @@
 angular.module('starter.services', [])
 
+/**
+ * Fetch retrieves the json object from the respective JSON files
+ */
 .factory('Fetch', function($http) {
     return {
         getEvents: function () {
@@ -19,6 +22,13 @@ angular.module('starter.services', [])
 
 .factory('Write', function($http) {
     return {
-        // TODO finish
+        /*writeJson: function(data, fileName){
+            $cordovaFile.writeFile(cordova.file.dataDirectory, fileName, JSON.stringify(data), true).then(
+                function (success) {
+                     return true;
+                }, function (error) {
+                    console.log("Oh noes!!!");
+                });
+        }*/
     };
 });
