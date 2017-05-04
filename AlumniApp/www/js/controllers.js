@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 var connections = [
+=======
+/**
+ * To get JSON object from the JSON data files you need to pass the Fetch in
+ * as a dependancy, see CalendarDemoCtrl function ($scope, $http, Fetch)
+ * Look in the services.js files to get the proper name of the function to
+ * get data from the right JSON file.
+ * Look at CalendarDemoCtrl and CreateEventCtrl for eaxmples on how to use
+ */
+var objects = [
+>>>>>>> 25aa3d7866da0bcc960ff97b912b9fea2daaf1d6
   { 'id': 1, 'first_name': 'Abby', 'last_name': 'Tran', 'email': 'abby@gmail.com' },
   { 'id': 2, 'first_name': 'David', 'last_name': 'Quach', 'email': 'david@yahoo.com' },
   { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com' },
@@ -14,7 +25,7 @@ var jobs = [
   { 'id': 3, 'com_name': 'Alstom', 'location': 'Rochester', 'title': 'Testing Coordinator', 'description': 'Fun', 'duration': 'Fall 2017' }
 ];
 
-angular.module('starter.controllers', ['ui.rCalendar'])
+angular.module('starter.controllers', ['starter.services','ui.rCalendar','ngCordova'])
 
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
@@ -93,7 +104,7 @@ angular.module('starter.controllers', ['ui.rCalendar'])
   })
 
 
-  .controller('CalendarDemoCtrl', function ($scope, $http) {
+  .controller('CalendarDemoCtrl', function ($scope, $http, Fetch) {
     'use strict';
     $scope.calendar = {};
     $scope.changeMode = function (mode) {
@@ -129,7 +140,7 @@ angular.module('starter.controllers', ['ui.rCalendar'])
 
     function importEvents() {
       var events = [];
-      $http.get('js/json/events.json').success(function (data) {
+      Fetch.getEvents().success(function (data) {
         for (var i = 0; i < data.Events.length; i++) {
           var date = new Date(data.Events[i].beginningTime);
           var eventType = data.Events[i].eventType;
@@ -160,13 +171,18 @@ angular.module('starter.controllers', ['ui.rCalendar'])
             });
           }
         }
-      })
+    })
       return events;
     }
   })
 
+<<<<<<< HEAD
   .controller('CreateEventCtrl', function ($scope, $stateParams, $http) {
     $scope.event = { begin_time: Date.now(), end_time: Date.now(), title: "", location: "", description: "" }
+=======
+  .controller('CreateEventCtrl', function ($scope, $stateParams, $http, $cordovaFile, Fetch, Write) {
+    $scope.event = { name: "", time: Date.now(), date: Date.now(), location: "", description: "" }
+>>>>>>> 25aa3d7866da0bcc960ff97b912b9fea2daaf1d6
     $scope.onsubmit = function () {
       /*alert($scope.event.name);
       alert($scope.event.time);
@@ -174,9 +190,25 @@ angular.module('starter.controllers', ['ui.rCalendar'])
       alert($scope.event.location);
       alert($scope.event.description);*/
 
-      var data = getFromFile('events.json', $http).method().then(function (result) {
-        return result;
+      Fetch.getEvents().then(function(json){
+          console.log(json);
+          //console.log(json.data.stringify());
+          var newID = json.data.Events.length + 1;
+          json.data.Events.push({
+            id: newID,
+            eventType: 1,
+            beginningTime: $scope.event.time,
+            endTime: $scope.event.time,
+            title: $scope.event.name,
+            description: $scope.event.description,
+            location: $scope.event.location
+          });
+          //writeToFile('events.json', json.data);
+          document.addEventListener("deviceready", function () {
+              Write.writeJson(json.data, 'events.json');
+            },false);
       });
+<<<<<<< HEAD
       console.log(data);
       var newID = data.Events.length + 1;
       data.Events.push({
@@ -189,6 +221,8 @@ angular.module('starter.controllers', ['ui.rCalendar'])
         location: $scope.event.location
       });
       writeToFile('events.json', data);
+=======
+>>>>>>> 25aa3d7866da0bcc960ff97b912b9fea2daaf1d6
     }
   })
 
