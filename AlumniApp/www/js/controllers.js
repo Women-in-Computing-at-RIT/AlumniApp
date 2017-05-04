@@ -11,7 +11,7 @@ var objects = [
   { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com' },
 ];
 
-angular.module('starter.controllers', ['starter.services','ui.rCalendar'])
+angular.module('starter.controllers', ['starter.services','ui.rCalendar','ngCordova'])
 
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
@@ -162,7 +162,7 @@ angular.module('starter.controllers', ['starter.services','ui.rCalendar'])
     }
   })
 
-  .controller('CreateEventCtrl', function ($scope, $stateParams, $http, Fetch, Write) {
+  .controller('CreateEventCtrl', function ($scope, $stateParams, $http, $cordovaFile, Fetch, Write) {
     $scope.event = { name: "", time: Date.now(), date: Date.now(), location: "", description: "" }
     $scope.onsubmit = function () {
       /*alert($scope.event.name);
@@ -185,7 +185,9 @@ angular.module('starter.controllers', ['starter.services','ui.rCalendar'])
             location: $scope.event.location
           });
           //writeToFile('events.json', json.data);
-          //Write.writeJson(json.data, 'events.json');
+          document.addEventListener("deviceready", function () {
+              Write.writeJson(json.data, 'events.json');
+            },false);
       });
     }
   })

@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngCordova'])
 
 /**
  * Fetch retrieves the json object from the respective JSON files
@@ -20,15 +20,15 @@ angular.module('starter.services', [])
     };
 })
 
-.factory('Write', function($http) {
+.factory('Write', function($http, $cordovaFile) {
     return {
-        /*writeJson: function(data, fileName){
+        writeJson: function(data, fileName){
             $cordovaFile.writeFile(cordova.file.dataDirectory, fileName, JSON.stringify(data), true).then(
                 function (success) {
                      return true;
                 }, function (error) {
                     console.log("Oh noes!!!");
                 });
-        }*/
+        }
     };
 });
