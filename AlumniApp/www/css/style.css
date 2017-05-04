@@ -6,14 +6,24 @@
     margin: 0px 0px 100px 0px;
     width: 100%;
     table-layout: fixed;
-    
 }
-.bar.bar-footer.bar-positive .row .col{
-    display: inline-block;
-    width: 10%;
-    text-align:center;
+.toolbar-background {
+  background-color: #4D1F5B;
+  color: #FDC000;
 }
 
+.home_buttons {
+  padding: 350px 20px;
+}
+.home_buttons a {
+  text-decoration: none;
+}
+.button.button-icon.ion-navicon {
+    color: #EDE8EE;
+}
+.title{
+    color: #EDE8EE;
+}
 .content {
 
     height: 100%;
@@ -26,22 +36,133 @@
     display: inline-block
 }
 
-.button.button-positive {
-    width: 30%;
-    margin: auto;
+.button.button-light {
+    width: 50%;
+    margin: 10px auto 10px auto;
     display: block;
+    color: #4D1F5B;
+    
 }
 
 .button.button-positive.button-clear.button-block {
     width: 100%;
 }
 
-.scroll-bar-indicator
-{
-	display: none;
-}
-
 .main_title {
     width: 100%;
-    text-align: center;
+    
+}
+
+.list.card {
+    margin: 50px 5px;
+}
+
+/*PROFILE*/
+#profile-bg {
+        position: fixed;
+        left: 0;
+        top: 70px;
+        width: 100%;
+        height: 200px;
+
+   /*     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/94311/bg.jpg') no-repeat transparent;*/
+        background-size: 100%;
+        background-position: 60% 20%;
+
+        text-align: center;
+ }
+
+#content {
+        position: relative;
+        margin-top: 200px;
+        background-color: white;
+        box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
+        padding-top: 250px;
+}
+
+#profile-info {
+        position: absolute;
+        top: -95px;
+        width: 100%;
+        z-index: 2;
+        text-align: center;
+}
+#profile-name {
+        color: #444;
+        font-size: 26px;
+}
+#profile-description {
+        font-size: 15px;
+        color: #888;
+}
+#profile-description a {
+        color: #888;
+}
+
+#profile-image {
+        display: block;
+        border-radius: 100px;
+        border: 1px solid #fff;
+        width: 128px;
+        height: 128px;
+        margin: 30px auto 0;
+        box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+}
+.profile-background {
+ background-color: #8464A1;
+}
+
+      .list-item-content {
+        padding: 5px;
+      }
+
+      .list-item {
+        color: #666666;
+      }
+
+      .post {
+        color: #444;
+      }
+
+      .post-time {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        font-size: 11px;
+        color: #888;
+      }
+
+      .post-profile-image {
+        display: inline-block;
+        vertical-align: top;
+        width: 48px;
+        height: 48px;
+        margin-right: 10px;
+      }
+      .post-options {
+        position: absolute;
+        font-size: 16px;
+        right: 5px;
+        bottom: 5px;
+        color: #888;
+      }
+
+.slider {
+  height: 200px;
+}
+.slider-slide {
+  padding-top: 40px;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+}
+.panee {
+  background: url("../img/WicLo2_Purple.svg");
+  background-color:  #8464A1;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: 100% 80%;
 }

@@ -1,0 +1,16 @@
+<ion-view class="main_title" title="Event Detail">
+    <ion-content class="has-header padding" ng-controller="ImageController">
+        <button class="button button-full button-energized" ng-click="addMedia()">
+      Add image
+    </button>
+        <button class="button button-full button-positive" ng-click="sendEmail()">
+      Send mail
+    </button>
+        <br><br>
+        <ion-scroll direction="x" style="height:200px; min-height: 200px; overflow: scroll; white-space: nowrap;">
+            <img ng-repeat="image in images" ng-src="data:image/jpeg;base64,{{image}}" style="height:200px; padding: 5px 5px 5px 5px;"
+            />
+        </ion-scroll>
+
+    </ion-content>
+</ion-view>

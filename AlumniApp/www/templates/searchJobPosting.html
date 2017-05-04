@@ -1,0 +1,17 @@
+<ion-view title="Job Postings">
+
+    <ion-content>
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="search job postings by title" ng-model="searchQuery.title" />
+        </label>
+        <div class="list">
+            <a ng-repeat="item in jobList| filter:searchQuery" href="#/app/job/{{item.id}}" class="item item-thumbnail-left">
+                <h2><i class="icon ion-briefcase"></i> {{item.title }}</h2>
+                <div>{{item.com_name}} at {{item.location}}</div>
+                <div>{{item.duration}}</div>
+            </a>
+        </div>
+    </ion-content>
+
+</ion-view>

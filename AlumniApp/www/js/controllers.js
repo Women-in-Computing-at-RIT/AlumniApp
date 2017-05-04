@@ -1,7 +1,17 @@
-var objects = [
+var connections = [
   { 'id': 1, 'first_name': 'Abby', 'last_name': 'Tran', 'email': 'abby@gmail.com' },
   { 'id': 2, 'first_name': 'David', 'last_name': 'Quach', 'email': 'david@yahoo.com' },
   { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com' },
+];
+var events = [
+  { 'id': 1, 'begin_time': 'May 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Lunch', 'location': 'Crossroads', 'description': 'Fun' },
+  { 'id': 2, 'begin_time': 'April 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Dinner', 'location': 'Brick City', 'description': 'So So' },
+  { 'id': 3, 'begin_time': 'March 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Breakfast', 'location': 'Gracies', 'description': 'Ehh' },
+];
+var jobs = [
+  { 'id': 1, 'com_name': 'ASML', 'location': 'Connecticut', 'title': 'Software Engineer', 'description': 'Fun', 'duration': 'Summer 2017' },
+  { 'id': 2, 'com_name': 'Genius Plaza', 'location': 'New York', 'title': 'Web Developer', 'description': 'Fun', 'duration': 'Spring 2017' },
+  { 'id': 3, 'com_name': 'Alstom', 'location': 'Rochester', 'title': 'Testing Coordinator', 'description': 'Fun', 'duration': 'Fall 2017' }
 ];
 
 angular.module('starter.controllers', ['ui.rCalendar'])
@@ -156,7 +166,7 @@ angular.module('starter.controllers', ['ui.rCalendar'])
   })
 
   .controller('CreateEventCtrl', function ($scope, $stateParams, $http) {
-    $scope.event = { name: "", time: Date.now(), date: Date.now(), location: "", description: "" }
+    $scope.event = { begin_time: Date.now(), end_time: Date.now(), title: "", location: "", description: "" }
     $scope.onsubmit = function () {
       /*alert($scope.event.name);
       alert($scope.event.time);
@@ -172,9 +182,9 @@ angular.module('starter.controllers', ['ui.rCalendar'])
       data.Events.push({
         id: newID,
         eventType: 1,
-        beginningTime: $scope.event.time,
-        endTime: $scope.event.time,
-        title: $scope.event.name,
+        beginningTime: $scope.event.begin_time,
+        endTime: $scope.event.end_time,
+        title: $scope.event.title,
         description: $scope.event.description,
         location: $scope.event.location
       });
@@ -184,18 +194,51 @@ angular.module('starter.controllers', ['ui.rCalendar'])
 
 
 
-  .controller('CreateJobPostCtrl', function ($scope, $stateParams) {
-    $scope.job = { name: "", location: "", start_date: Date.now(), description: "" }
+  .controller('CreateJobPostCtrl', function ($scope, $stateParams, $http) {
+    $scope.job = { com_name: "", location: "", title: "", description: "", duration: "" }
     $scope.onsubmit = function () {
-      alert($scope.job.name);
-      alert($scope.job.location);
-      alert($scope.job.start_date);
-      alert($scope.job.description);
+      // alert($scope.job.com_name);
+      // alert($scope.job.location);
+      // alert($scope.job.postion);
+      // alert($scope.job.description);
+      // alert($scope.job.duration);
+      var data = getFromFile('jobPostings.json', $http).method().then(function (result) {
+        return result;
+      });
+      console.log(data);
+      var newID = data.JobPostings.length + 1;
+      data.JobPostings.push({
+        id: newID,
+        userID: 1,
+        companyName: $scope.job.com_name,
+        location: $scope.job.location,
+        jobTitle: $scope.job.title,
+        jobDescription: $scope.job.description,
+        duration: $scope.job.duration
+      });
+      writeToFile('jobPostings.json', data);
+    };
+  })
+
+  .controller('SearchCtrl', function ($scope, $rootScope, $stateParams) {
+    $scope.connectionList = connections;
+    $rootScope.eventList = events;
+    $scope.jobList = jobs;
+  })
+
+  .controller('EventCtrl', function ($scope, $rootScope, $stateParams) {
+    var id = $stateParams.eventId;
+    $scope.event = "";
+    for (var i = 0; i < $rootScope.eventList.length; i++) {
+      if (id == $rootScope.eventList[i].id) {
+        $scope.event = $rootScope.eventList[i];
+      }
     }
   })
 
-  .controller('SearchCtrl', function ($scope, $stateParams) {
-    $scope.searchlist = objects;
+  .controller("ProfileCtrl", function ($scope, $stateParams) {
+    $scope.user = connections[0];
+  })
+  ;
 
-  }
-  );
+

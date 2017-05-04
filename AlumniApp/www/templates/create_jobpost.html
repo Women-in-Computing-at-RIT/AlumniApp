@@ -3,36 +3,40 @@
     <ion-content>
         <form class="list">
             <div class="list card">
-                <div class="item item-divider item-positive">
-                    Job
-                </div>
+
                 <ion-list>
                     <label class="item item-input">
-                    <span class="input-label">Name</span>
-                    <input type="text" placeholder="" ng-model="job.name">
-                </label>
+                        <span class="input-label">Company Name</span>
+                        <input type="text" placeholder="" ng-model="job.com_name">
+                        
+                    </label>
 
                     <label class="item item-input">
-                    <span class="input-label">Location</span>
-                    <input ng-model="job.location" type="text" placeholder="" >
-                </label>
+                        <span class="input-label">Location</span>
+                        <input ng-model="job.location" type="text" placeholder="" >
+                    </label>
 
                     <label class="item item-input">
-                    <span class="input-label">Start Date</span>
-                    <input type="date" placeholder="ex. 04/20/2017" ng-model="job.start_date">
-                </label>
+                        <span class="input-label">Position</span>
+                        <input type="text" placeholder="" ng-model="job.title">
+                    </label>
 
                     <label class="item item-input item-stacked-label">
-                    <span class="input-label">Description</span>
-                    <textarea type="text" rows="8" placeholder="max length: 100" ng-model="job.description" ></textarea>
-                </label>
+                        <span class="input-label">Description</span>
+                        <textarea type="text" rows="8" placeholder="max length: 100" ng-model="job.description" ></textarea>
+                    </label>
+
+                    <label class="item item-input">
+                        <span class="input-label">Duration</span>
+                        <input type="text" placeholder="ex. Summer - start in May" ng-model="job.duration">
+                    </label>
                 </ion-list>
             </div>
 
             <div class="spacer" style="height: 40px;"></div>
             <span width="80%">
                          <button class="button button-outline button-positive" ng-click="onsubmit()">Create</button>
-                    </span>
+            </span>
 
         </form>
     </ion-content>

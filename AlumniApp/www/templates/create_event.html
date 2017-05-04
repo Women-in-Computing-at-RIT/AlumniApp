@@ -1,52 +1,41 @@
-<ion-view class="main_title" title="Create Event">
-    <!--<ion-header-bar class="bar bar-header">
-        <ion-navbar>
-            <button class="button button-clear ion-navicon-round pull-left"></button>
-            <h1 class="title">Create Event</h1>
-            <button class="button button-clear ion-search pull-right"></button>
-        </ion-navbar>
-    </ion-header-bar>-->
-
+<ion-view class="main_title" side="center" title="Create Event">
     <ion-content>
         <form class="list">
             <div class="list card">
-                <div class="item item-divider item-positive">
-                    Event
-                </div>
-                <ion-item>
-                    <ion-list>
-                        <label class="item item-input">
-                    <span class="input-label">Name</span>
-                    <input type="text" placeholder="" ng-model="event.name">
-                </label>
+                <ion-list>
+                    <label class="item item-input">
+                            <span class="input-label">Beginning Time</span>
+                            <input ng-model="event.begin_time" type="time" placeholder="ex. May 6, 2017 11:00:00" >
+                    </label>
 
-                        <label class="item item-input">
-                    <span class="input-label">Time</span>
-                    <input ng-model="event.time" type="time" placeholder="ex. 10:30:00" >
-                </label>
+                    <label class="item item-input">
+                            <span class="input-label">End Time</span>
+                            <input ng-model="event.end_time" type="time" placeholder="ex. May 6, 2017 12:00:00" >
+                    </label>
 
-                        <label class="item item-input">
-                    <span class="input-label">Date</span>
-                    <input type="date" placeholder="ex. 04/20/2017" ng-model="event.date">
-                </label>
+                    <label class="item item-input">
+                            <span class="input-label">Title</span>
+                            <input type="text" placeholder="" ng-model="event.title">
+                    </label>
 
-                        <label class="item item-input item-stacked-label">
-                    <span class="input-label">Location</span>
-                    <input type="text" placeholder="" ng-model="event.location">
-                </label>
+                    <label class="item item-input item-stacked-label">
+                            <span class="input-label">Location</span>
+                            <input type="text" placeholder="" ng-model="event.location">
+                    </label>
 
-                        <label class="item item-input item-stacked-label">
-                    <span class="input-label">Description</span>
-                    <textarea type="text" rows="8" placeholder="" ng-model="event.description"></textarea>
-                </label>
+                    <label class="item item-input item-stacked-label">
+                            <span class="input-label">Description</span>
+                            <textarea type="text" rows="8" placeholder="" ng-model="event.description"></textarea>
+                    </label>
 
-                    </ion-list>
-                </ion-item>
+                </ion-list>
+
             </div>
 
-            <div class="spacer" style="height: 40px;"></div>
-
+            <div class="spacer" style="height: 20px;"></div>
+            <span width="80%">
             <button class="button button-outline button-positive" ng-click="onsubmit()">Create</button>
+            </span>
 
         </form>
 

@@ -1,4 +1,4 @@
-<ion-view title="Home">
+<ion-view title="Connections">
 
     <ion-content>
         <label class="item item-input">
@@ -9,7 +9,7 @@
             <div class="item item-divider item-positive">
                 Connections
             </div>
-            <ion-item ng-repeat="item in searchlist | filter:searchQuery">
+            <ion-item ng-repeat="item in connectionList | filter:searchQuery">
                 <div><i class="icon ion-android-person">  </i> {{item.first_name }} {{item.last_name}}</div>
                 <div id="email-block">{{item.email}}</div>
             </ion-item>
@@ -24,20 +24,6 @@
             <div class="item item-balanced item-divider">
                 Upcoming Events
             </div>
-            <a href="#" class="item item-icon-left">
-                <i class="icon ion-ios-telephone"></i> Enter phone number
-            </a>
-        </div>
-        <div class="list card">
-            <div class="item item-divider item-royal">
-                Recent Job Postings
-            </div>
-            <a href="#" class="item item-icon-left">
-                <i class="icon ion-ios-telephone"></i> Enter phone number
-            </a>
-            <a href="#" class="item item-icon-left">
-                <i class="icon ion-ios-telephone"></i> Enter phone number
-            </a>
             <a href="#" class="item item-icon-left">
                 <i class="icon ion-ios-telephone"></i> Enter phone number
             </a>
