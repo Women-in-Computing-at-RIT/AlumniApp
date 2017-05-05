@@ -41,7 +41,13 @@
     margin: 10px auto 10px auto;
     display: block;
     color: #4D1F5B;
-    
+}
+.button.button-outline.button-positive {
+    width: 40%;
+    margin: -10px auto 10px auto;
+    display: block;
+    color: #4D1F5B;
+    border-color: #4D1F5B;
 }
 
 .button.button-positive.button-clear.button-block {
