@@ -8,12 +8,12 @@
     table-layout: fixed;
 }
 .toolbar-background {
-  background-color: #4D1F5B;
+  background-color: #3c2a54;
   color: #FDC000;
 }
 
 .home_buttons {
-  padding: 350px 20px;
+  padding: 290px 15px 0px 25px;
 }
 .home_buttons a {
   text-decoration: none;
@@ -37,7 +37,7 @@
 }
 
 .button.button-light {
-    width: 50%;
+    width: 40%;
     margin: 10px auto 10px auto;
     display: block;
     color: #4D1F5B;
@@ -160,9 +160,7 @@
   font-weight: 300;
 }
 .panee {
-  background: url("../img/WicLo2_Purple.svg");
-  background-color:  #8464A1;
+  background: url("../img/new_background.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: 100% 80%;
 }

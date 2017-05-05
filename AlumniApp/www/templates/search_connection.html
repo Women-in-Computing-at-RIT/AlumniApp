@@ -6,9 +6,7 @@
             <input type="search" placeholder="search by last name" ng-model="searchQuery.last_name" />
         </label>
         <div class="list card">
-            <div class="item item-divider item-positive">
-                Connections
-            </div>
+
             <ion-item ng-repeat="item in connectionList | filter:searchQuery">
                 <div><i class="icon ion-android-person">  </i> {{item.first_name }} {{item.last_name}}</div>
                 <div id="email-block">{{item.email}}</div>
@@ -16,18 +14,10 @@
             <a class="item item-avatar" href="#">
                 <img src="../img/ninja.jpg">
                 <h2>Ninja</h2>
-                <p>Bring it on
-                </p>
+                <p>Bring it on</p>
             </a>
         </div>
-        <div class="list card">
-            <div class="item item-balanced item-divider">
-                Upcoming Events
-            </div>
-            <a href="#" class="item item-icon-left">
-                <i class="icon ion-ios-telephone"></i> Enter phone number
-            </a>
-        </div>
+
 
     </ion-content>
 
