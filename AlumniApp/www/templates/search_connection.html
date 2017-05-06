@@ -7,15 +7,14 @@
         </label>
         <div class="list card">
 
-            <ion-item ng-repeat="item in connectionList | filter:searchQuery">
-                <div><i class="icon ion-android-person">  </i> {{item.first_name }} {{item.last_name}}</div>
-                <div id="email-block">{{item.email}}</div>
+            <ion-item ng-repeat="item in connectionList | filter:searchQuery" href="#/app/profile/{{item.id}}">
+                <a class="item item-avatar">
+                <img src={{item.profile}}>
+                <h2>{{item.first_name }} {{item.last_name}}</h2>
+                <p id="email-block">{{item.email}}</p>
+                </a>
             </ion-item>
-            <a class="item item-avatar" href="#">
-                <img src="../img/ninja.jpg">
-                <h2>Ninja</h2>
-                <p>Bring it on</p>
-            </a>
+
         </div>
 
 

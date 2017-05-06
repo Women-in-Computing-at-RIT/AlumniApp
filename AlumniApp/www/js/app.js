@@ -100,6 +100,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           }
         }
       })
+      .state('app.other_profile', {
+        url: '/profile/:otherProfileId',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/other_profile.html',
+            controller: 'OtherProfileCtrl'
+          }
+        }
+      })
 
       .state('app.searchEvent', {
         url: '/search_event',
@@ -139,25 +148,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           }
         }
       })
-      .state('app.view_job', {
-        url: '/job/{{job.id}}',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/job_detail.html'
-          }
-        }
-      })
-      .state('app.job_detail', {
-        abstract: true,
-        url: '/job_detail',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/job_detail.html',
-            controller: 'ImageController'
 
-          }
-        }
-      })
+
 
 
 

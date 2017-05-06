@@ -1,17 +1,20 @@
 var connections = [
-  { 'id': 1, 'first_name': 'Abby', 'last_name': 'Tran', 'email': 'abby@gmail.com' },
-  { 'id': 2, 'first_name': 'David', 'last_name': 'Quach', 'email': 'david@yahoo.com' },
-  { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com' },
+  { 'id': 1, 'first_name': 'Ninja', 'last_name': 'Tran', 'email': 'ninja@gmail.com', 'profile': '../img/ninja.jpg' },
+  { 'id': 2, 'first_name': 'David', 'last_name': 'Quach', 'email': 'david@yahoo.com', 'profile': '../img/david.jpg' },
+  { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com', 'profile': '../img/regina.jpg' },
 ];
+var my_profile = [
+  { 'id': 1, 'first_name': 'Abby', 'last_name': 'Tran', 'email': 'abby@gmail.com', 'profile': '../img/selfie1.jpg' }
+]
 var events = [
   { 'id': 1, 'begin_time': 'May 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Lunch', 'location': 'Crossroads', 'description': 'Fun' },
   { 'id': 2, 'begin_time': 'April 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Dinner', 'location': 'Brick City', 'description': 'So So' },
   { 'id': 3, 'begin_time': 'March 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Breakfast', 'location': 'Gracies', 'description': 'Ehh' },
 ];
 var jobs = [
-  { 'id': 1, 'com_name': 'ASML', 'location': 'Connecticut', 'title': 'Software Engineer', 'description': 'Fun', 'duration': 'Summer 2017' },
-  { 'id': 2, 'com_name': 'Genius Plaza', 'location': 'New York', 'title': 'Web Developer', 'description': 'Fun', 'duration': 'Spring 2017' },
-  { 'id': 3, 'com_name': 'Alstom', 'location': 'Rochester', 'title': 'Testing Coordinator', 'description': 'Fun', 'duration': 'Fall 2017' }
+  { 'id': 1, 'com_name': 'ASML', 'location': 'Connecticut', 'title': 'Software Engineer', 'description': 'Fun', 'duration': 'Summer 2017', 'profile': '../img/asml.jpg' },
+  { 'id': 2, 'com_name': 'Genius Plaza', 'location': 'New York', 'title': 'Web Developer', 'description': 'Fun', 'duration': 'Spring 2017', 'profile': '../img/genius.png' },
+  { 'id': 3, 'com_name': 'Alstom', 'location': 'Rochester', 'title': 'Testing Coordinator', 'description': 'Fun', 'duration': 'Fall 2017', 'profile': '../img/alstom.png' }
 ];
 
 angular.module('starter.controllers', ['ui.rCalendar'])
@@ -221,7 +224,7 @@ angular.module('starter.controllers', ['ui.rCalendar'])
   })
 
   .controller('SearchCtrl', function ($scope, $rootScope, $stateParams) {
-    $scope.connectionList = connections;
+    $rootScope.connectionList = connections;
     $rootScope.eventList = events;
     $scope.jobList = jobs;
   })
@@ -236,8 +239,19 @@ angular.module('starter.controllers', ['ui.rCalendar'])
     }
   })
 
+  .controller('OtherProfileCtrl', function ($scope, $rootScope, $stateParams) {
+    var id = $stateParams.otherProfileId;
+    $scope.other = "";
+    console.log($rootScope.connectionList.length);
+    for (var i = 0; i < $rootScope.connectionList.length; i++) {
+      if (id == $rootScope.connectionList[i].id) {
+        $scope.other = $rootScope.connectionList[i];
+      }
+    }
+  })
+
   .controller("ProfileCtrl", function ($scope, $stateParams) {
-    $scope.user = connections[0];
+    $scope.user = my_profile[0];
   })
   ;
 
