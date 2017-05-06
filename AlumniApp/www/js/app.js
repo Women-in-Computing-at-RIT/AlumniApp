@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter.services'])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $cordovaSQLite, $rootScope) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -19,6 +19,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+
+      if(window.cordova) {
+      // App/device syntax
+        $rootScope.db = $cordovaSQLite.openDB({name: "database.db"});
+      } else {
+        // Ionic serve syntax
+        $rootScope.db = window.openDatabase("database.db", '1.0', 'App Demo', 65536);
+      }
+
+      //setup
+      $cordovaSQLite.execute($rootScope.db, "CREATE TABLE events(id INT PRIMARY KEY NOT NULL,eventType INT,begTime VARCHAR(25),endTime VARCHAR(25),title VARCHAR(255),description TEXT,location VARSHAR(255));");
+      $cordovaSQLite.execute($rootScope.db, "INSERT INTO events(id, eventType, begTime, endTime, title, description, location) VALUES (0,1,'May 6, 2017 11:00:00', 'May 6, 2017 12:00:00', 'Super Event', 'Event for Super People', '70-2600')");
+
     });
   })
 

@@ -1,37 +1,65 @@
+/* What I used for an example: https://gist.github.com/lykmapipo/6451623a54ef9b957a5c#file-controllers-js */
 angular.module('starter.services', ['ngCordova'])
 
+    .factory('Events', function ($cordovaSQLite, $rootScope, $ionicPlatform, $q) {
+              var self = this;
 
+                  // Handle query's and potential errors
+              self.query = function () {
+                var q = $q.defer();
+                var query = "SELECT * FROM events";
 
-    /**
-     * Fetch retrieves the json object from the respective JSON files
-     */
-    .factory('Fetch', function ($http) {
-        return {
-            getEvents: function () {
-                return $http.get('js/json/events.json')
-            },
-            getJobPostings: function () {
-                return $http.get('js/json/jobPostings.json')
-            },
-            getProfiles: function () {
-                return $http.get('js/json/profiles.json')
-            },
-            getUsers: function () {
-                return $http.get('js/json/users.json')
-            }
-        };
-    })
-
-    .factory('Write', function ($http, $cordovaFile) {
-        return {
-            writeJson: function (data, fileName) {
-                $cordovaFile.writeFile(cordova.file.dataDirectory, fileName, JSON.stringify(data), true).then(
-                    function (success) {
-                        return true;
+                $ionicPlatform.ready(function () {
+                  $cordovaSQLite.execute($rootScope.db, query, [])
+                    .then(function (result) {
+                      q.resolve(result);
                     }, function (error) {
-                        console.log("Oh noes!!!");
+                      console.warn('I found an error');
+                      console.warn(error);
+                      q.reject(error);
                     });
+                });
+                return q.promise;
             }
-        };
-    });
 
+            self.getAll = function(result) {
+                return this.query().then(function(result){
+                    var dbData ={
+                        Events : []
+                    }
+
+                    for (var i = 0; i < result.rows.length; i++) {
+                        dbData.Events.push({
+                            id: result.rows.item(i).id,
+                            eventType: result.rows.item(i).eventType,
+                            begTime: result.rows.item(i).begTime,
+                            endTime: result.rows.item(i).endTime,
+                            title: result.rows.item(i).title,
+                            description: result.rows.item(i).description,
+                            location: result.rows.item(i).location
+                        });
+                    }
+                    return dbData;
+                });
+            }
+            self.add = function(event) {
+                var params = [event.id, event.eventType, event.begTime,
+                    event.endTime, event.title, event.description, event.location];
+                var q = $q.defer();
+                var query = "INSERT INTO events (id, eventType, begTime, endTime, title, description, location)"+
+                " VALUES (?,?,?,?,?,?,?)";
+
+                $ionicPlatform.ready(function () {
+                  $cordovaSQLite.execute($rootScope.db, query, params)
+                    .then(function (result) {
+                      q.resolve(result);
+                    }, function (error) {
+                      console.warn('I found an error');
+                      console.warn(error);
+                      q.reject(error);
+                    });
+                });
+                return q.promise;
+            }
+        return self;
+    });

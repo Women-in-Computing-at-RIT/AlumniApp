@@ -14,7 +14,7 @@ var jobs = [
   { 'id': 3, 'com_name': 'Alstom', 'location': 'Rochester', 'title': 'Testing Coordinator', 'description': 'Fun', 'duration': 'Fall 2017' }
 ];
 
-angular.module('starter.controllers', ['ui.rCalendar'])
+angular.module('starter.controllers', ['ui.rCalendar', 'ngCordova', 'starter.services'])
 
 
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
@@ -93,7 +93,7 @@ angular.module('starter.controllers', ['ui.rCalendar'])
   })
 
 
-  .controller('CalendarDemoCtrl', function ($scope, $http) {
+  .controller('CalendarDemoCtrl', function ($scope, Events) {
     'use strict';
     $scope.calendar = {};
     $scope.changeMode = function (mode) {
@@ -129,11 +129,11 @@ angular.module('starter.controllers', ['ui.rCalendar'])
 
     function importEvents() {
       var events = [];
-      $http.get('js/json/events.json').success(function (data) {
+      Events.getAll().then(function (data) {
         for (var i = 0; i < data.Events.length; i++) {
-          var date = new Date(data.Events[i].beginningTime);
+          var date = new Date(data.Events[i].begTime);
           var eventType = data.Events[i].eventType;
-          var startDay = new Date(data.Events[i].beginningTime);
+          var startDay = new Date(data.Events[i].begTime);
           var endDay = new Date(data.Events[i].endTime);
           var startTime;
           var endTime;
@@ -165,30 +165,24 @@ angular.module('starter.controllers', ['ui.rCalendar'])
     }
   })
 
-  .controller('CreateEventCtrl', function ($scope, $stateParams, $http) {
+  .controller('CreateEventCtrl', function ($scope, $stateParams, Events) {
     $scope.event = { begin_time: Date.now(), end_time: Date.now(), title: "", location: "", description: "" }
     $scope.onsubmit = function () {
-      /*alert($scope.event.name);
-      alert($scope.event.time);
-      alert($scope.event.date);
-      alert($scope.event.location);
-      alert($scope.event.description);*/
+      alert($scope.event.begin_time);
 
-      var data = getFromFile('events.json', $http).method().then(function (result) {
-        return result;
-      });
-      console.log(data);
-      var newID = data.Events.length + 1;
-      data.Events.push({
-        id: newID,
-        eventType: 1,
-        beginningTime: $scope.event.begin_time,
-        endTime: $scope.event.end_time,
-        title: $scope.event.title,
-        description: $scope.event.description,
-        location: $scope.event.location
-      });
-      writeToFile('events.json', data);
+      Events.getAll().then(function (data) {
+          var newID = data.Events.length + 1;
+          Events.add({
+            id: newID,
+            eventType: 1,
+            begTime: $scope.event.begin_time,
+            endTime: $scope.event.end_time,
+            title: $scope.event.title,
+            description: $scope.event.description,
+            location: $scope.event.location
+          });
+      })
+      Events.getAll().then(function (data) {console.log(data);})
     }
   })
 
@@ -240,5 +234,3 @@ angular.module('starter.controllers', ['ui.rCalendar'])
     $scope.user = connections[0];
   })
   ;
-
-
