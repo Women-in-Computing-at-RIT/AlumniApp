@@ -32,6 +32,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       $cordovaSQLite.execute($rootScope.db, "CREATE TABLE events(id INT PRIMARY KEY NOT NULL,eventType INT,begTime VARCHAR(25),endTime VARCHAR(25),title VARCHAR(255),description TEXT,location VARSHAR(255));");
       $cordovaSQLite.execute($rootScope.db, "INSERT INTO events(id, eventType, begTime, endTime, title, description, location) VALUES (0,1,'May 6, 2017 11:00:00', 'May 6, 2017 12:00:00', 'Super Event', 'Event for Super People', '70-2600')");
 
+      $cordovaSQLite.execute($rootScope.db, "CREATE TABLE jobPosting(id INT PRIMARY KEY NOT NULL,companyName VARCHAR(255),location VARCHAR(255),jobTitle VARCHAR(255),jobDescription TEXT,duration VARCHAR(255));");
+      $cordovaSQLite.execute($rootScope.db, "INSERT INTO jobPosting(id, companyName, location, jobTitle, jobDescription, duration) VALUES (1, 'ASML', 'Connecticut', 'Software Engineer', 'Fun', 'Summer 2017');");
     });
   })
 

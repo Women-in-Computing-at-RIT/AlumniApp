@@ -179,37 +179,30 @@ angular.module('starter.controllers', ['ui.rCalendar', 'ngCordova', 'starter.ser
             description: $scope.event.description,
             location: $scope.event.location
           });
-      })
-      Events.getAll().then(function (data) {console.log(data);})
-      alert("Thanks for creating an Event!")
+      });
+      Events.getAll().then(function (data) {console.log(data);});
+      alert("Thanks for creating an Event!");
     }
-  })
+})
 
 
 
-  .controller('CreateJobPostCtrl', function ($scope, $stateParams, $http) {
+  .controller('CreateJobPostCtrl', function ($scope, $stateParams, JobPosting) {
     $scope.job = { com_name: "", location: "", title: "", description: "", duration: "" }
     $scope.onsubmit = function () {
-      // alert($scope.job.com_name);
-      // alert($scope.job.location);
-      // alert($scope.job.postion);
-      // alert($scope.job.description);
-      // alert($scope.job.duration);
-      var data = getFromFile('jobPostings.json', $http).method().then(function (result) {
-        return result;
-      });
-      console.log(data);
-      var newID = data.JobPostings.length + 1;
-      data.JobPostings.push({
-        id: newID,
-        userID: 1,
-        companyName: $scope.job.com_name,
-        location: $scope.job.location,
-        jobTitle: $scope.job.title,
-        jobDescription: $scope.job.description,
-        duration: $scope.job.duration
-      });
-      writeToFile('jobPostings.json', data);
+        JobPosting.getAll().then(function (data) {
+            var newID = data.JobPosting.length + 1; + 1;
+            JobPosting.add({
+                id: newID,
+                companyName: $scope.job.com_name,
+                location: $scope.job.location,
+                jobTitle: $scope.job.title,
+                jobDescription: $scope.job.description,
+                duration: $scope.job.duration
+            });
+        });
+        JobPosting.getAll().then(function (data) {console.log(data);});
+        alert("Thanks for creating a Jop Posting!");
     };
   })
 
