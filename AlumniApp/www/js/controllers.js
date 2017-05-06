@@ -168,8 +168,6 @@ angular.module('starter.controllers', ['ui.rCalendar', 'ngCordova', 'starter.ser
   .controller('CreateEventCtrl', function ($scope, $stateParams, Events) {
     $scope.event = { begin_time: Date.now(), end_time: Date.now(), title: "", location: "", description: "" }
     $scope.onsubmit = function () {
-      alert($scope.event.begin_time);
-
       Events.getAll().then(function (data) {
           var newID = data.Events.length + 1;
           Events.add({
@@ -183,6 +181,7 @@ angular.module('starter.controllers', ['ui.rCalendar', 'ngCordova', 'starter.ser
           });
       })
       Events.getAll().then(function (data) {console.log(data);})
+      alert("Thanks for creating an Event!")
     }
   })
 
