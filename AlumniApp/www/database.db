@@ -1,0 +1,49 @@
+CREATE TABLE events(
+   id INT PRIMARY KEY NOT NULL,
+   eventType INT,
+   begTime VARCHAR(25),
+   endTime VARCHAR(25),
+   title VARCHAR(255),
+   description TEXT,
+   location VARSHAR(255)
+);
+
+CREATE TABLE profiles(
+   id INT PRIMARY KEY NOT NULL,
+   name VARCHAR(255),
+   photo VARCHAR(255),
+   major VARCHAR(255),
+   gradYear VARCHAR(255)
+);
+
+CREATE TABLE users(
+   id INT PRIMARY KEY NOT NULL,
+   email VARCHAR(255),
+   password VARCHAR(255),
+   profileID INT
+);
+
+CREATE TABLE workExperience(
+   id INT PRIMARY KEY NOT NULL,
+   companyName VARCHAR(255),
+   location VARCHAR(255),
+   jobTitle VARCHAR(255),
+   jobDescription TEXT,
+   timeStart VARCHAR(255),
+   timeEnd VARCHAR(255),
+   profileID INT
+);
+
+CREATE TABLE jobPostings(
+   id INT PRIMARY KEY NOT NULL,
+   companyName VARCHAR(255),
+   location VARCHAR(255),
+   jobTitle VARCHAR(255),
+   jobDescription TEXT,
+   duration VARCHAR(255)
+);
+
+CREATE TABLE profToJob(
+   profID INT PRIMARY KEY NOT NULL,
+   jobID INT PRIMARY KEY NOT NULL
+);
