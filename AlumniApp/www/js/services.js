@@ -63,6 +63,102 @@ angular.module('starter.services', ['ngCordova'])
             }
         return self;
     })
+
+    .factory('Users', function ($cordovaSQLite, $rootScope, $ionicPlatform, $q) {
+              var self = this;
+
+                  // Handle query's and potential errors
+              self.query = function () {
+                var q = $q.defer();
+                var query = "SELECT * FROM users";
+
+                $ionicPlatform.ready(function () {
+                  $cordovaSQLite.execute($rootScope.db, query, [])
+                    .then(function (result) {
+                      q.resolve(result);
+                    }, function (error) {
+                      console.warn('I found an error');
+                      console.warn(error);
+                      q.reject(error);
+                    });
+                });
+                return q.promise;
+            }
+
+            self.getByUserPass = function(email, pass){
+                var q = $q.defer();
+                var query = "SELECT * FROM users WHERE email = "+email+" AND password = '"+pass+"';'";
+
+                $ionicPlatform.ready(function () {
+                  $cordovaSQLite.execute($rootScope.db, query, [])
+                    .then(function (result) {
+                      q.resolve(result);
+                    }, function (error) {
+                      console.warn('I found an error');
+                      console.warn(error);
+                      q.reject(error);
+                    });
+                });
+                return q.promise;
+            }
+
+            self.login = function(email, pass){
+                return this.query().getByUserPass(function(email, pass){
+                    var dbData ={
+                        Users : []
+                    }
+
+                    for (var i = 0; i < result.rows.length; i++) {
+                        dbData.Users.push({
+                            id: result.rows.item(i).id,
+                            email: result.rows.item(i).email,
+                            password: result.rows.item(i).password,
+                            profileID: result.rows.item(i).profileID
+                        });
+                    }
+                    return dbData;
+                });
+            }
+
+            self.getAll = function(result) {
+                return this.query().then(function(result){
+                    var dbData ={
+                        Users : []
+                    }
+
+                    for (var i = 0; i < result.rows.length; i++) {
+                        dbData.Users.push({
+                            id: result.rows.item(i).id,
+                            email: result.rows.item(i).email,
+                            password: result.rows.item(i).password,
+                            profileID: result.rows.item(i).profileID
+                        });
+                    }
+                    return dbData;
+                });
+            }
+            self.add = function(user) {
+                var params = [user.id, user.email, user.password,
+                    user.profileID];
+                var q = $q.defer();
+                var query = "INSERT INTO events (id, email, password, profileID)"+
+                " VALUES (?,?,?,?)";
+
+                $ionicPlatform.ready(function () {
+                  $cordovaSQLite.execute($rootScope.db, query, params)
+                    .then(function (result) {
+                      q.resolve(result);
+                    }, function (error) {
+                      console.warn('I found an error');
+                      console.warn(error);
+                      q.reject(error);
+                    });
+                });
+                return q.promise;
+            }
+        return self;
+    })
+
     .factory('JobPosting', function ($cordovaSQLite, $rootScope, $ionicPlatform, $q) {
               var self = this;
 

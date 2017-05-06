@@ -34,6 +34,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
 
       $cordovaSQLite.execute($rootScope.db, "CREATE TABLE jobPosting(id INT PRIMARY KEY NOT NULL,companyName VARCHAR(255),location VARCHAR(255),jobTitle VARCHAR(255),jobDescription TEXT,duration VARCHAR(255));");
       $cordovaSQLite.execute($rootScope.db, "INSERT INTO jobPosting(id, companyName, location, jobTitle, jobDescription, duration) VALUES (1, 'ASML', 'Connecticut', 'Software Engineer', 'Fun', 'Summer 2017');");
+      $cordovaSQLite.execute($rootScope.db, "CREATE TABLE users(id INT PRIMARY KEY NOT NULL,email VARCHAR(255),password VARCHAR(255),profileID INT);");
+      cordovaSQLite.execute($rootScope.db, "INSERT INTO users(id, email, password, profileID) VALUES (1, 'rtl3971@rit.edu', '52hike!', '1');");
+
     });
   })
 
