@@ -1,11 +1,11 @@
 var connections = [
   { 'id': 1, 'first_name': 'Ninja', 'last_name': 'Tran', 'email': 'ninja@gmail.com', 'profile': '../img/ninja.jpg' },
   { 'id': 2, 'first_name': 'David', 'last_name': 'Quach', 'email': 'david@yahoo.com', 'profile': '../img/david.jpg' },
-  { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com', 'profile': '../img/regina.jpg' },
+  { 'id': 3, 'first_name': 'Regina', 'last_name': 'Locicero', 'email': 'regina@wic.rit.com', 'profile': '../img/regina.jpg' }
 ];
 var my_profile = [
   { 'id': 1, 'first_name': 'Abby', 'last_name': 'Tran', 'email': 'abby@gmail.com', 'profile': '../img/selfie1.jpg' }
-]
+];
 var events = [
   { 'id': 1, 'begin_time': 'May 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Lunch', 'location': 'Crossroads', 'description': 'Fun' },
   { 'id': 2, 'begin_time': 'April 6, 2017 11:00:00', 'end_time': 'May 6, 2017 11:00:00', 'title': 'Dinner', 'location': 'Brick City', 'description': 'So So' },
@@ -172,40 +172,40 @@ angular.module('starter.controllers', ['ui.rCalendar', 'ngCordova', 'starter.ser
     $scope.event = { begin_time: Date.now(), end_time: Date.now(), title: "", location: "", description: "" }
     $scope.onsubmit = function () {
       Events.getAll().then(function (data) {
-          var newID = data.Events.length + 1;
-          Events.add({
-            id: newID,
-            eventType: 1,
-            begTime: $scope.event.begin_time,
-            endTime: $scope.event.end_time,
-            title: $scope.event.title,
-            description: $scope.event.description,
-            location: $scope.event.location
-          });
+        var newID = data.Events.length + 1;
+        Events.add({
+          id: newID,
+          eventType: 1,
+          begTime: $scope.event.begin_time,
+          endTime: $scope.event.end_time,
+          title: $scope.event.title,
+          description: $scope.event.description,
+          location: $scope.event.location
+        });
       });
-      Events.getAll().then(function (data) {console.log(data);});
+      Events.getAll().then(function (data) { console.log(data); });
       alert("Thanks for creating an Event!");
     }
-})
+  })
 
 
 
   .controller('CreateJobPostCtrl', function ($scope, $stateParams, JobPosting) {
     $scope.job = { com_name: "", location: "", title: "", description: "", duration: "" }
     $scope.onsubmit = function () {
-        JobPosting.getAll().then(function (data) {
-            var newID = data.JobPosting.length + 1; + 1;
-            JobPosting.add({
-                id: newID,
-                companyName: $scope.job.com_name,
-                location: $scope.job.location,
-                jobTitle: $scope.job.title,
-                jobDescription: $scope.job.description,
-                duration: $scope.job.duration
-            });
+      JobPosting.getAll().then(function (data) {
+        var newID = data.JobPosting.length + 1; + 1;
+        JobPosting.add({
+          id: newID,
+          companyName: $scope.job.com_name,
+          location: $scope.job.location,
+          jobTitle: $scope.job.title,
+          jobDescription: $scope.job.description,
+          duration: $scope.job.duration
         });
-        JobPosting.getAll().then(function (data) {console.log(data);});
-        alert("Thanks for creating a Jop Posting!");
+      });
+      JobPosting.getAll().then(function (data) { console.log(data); });
+      alert("Thanks for creating a Jop Posting!");
     };
   })
 
@@ -221,17 +221,6 @@ angular.module('starter.controllers', ['ui.rCalendar', 'ngCordova', 'starter.ser
     for (var i = 0; i < $rootScope.eventList.length; i++) {
       if (id == $rootScope.eventList[i].id) {
         $scope.event = $rootScope.eventList[i];
-      }
-    }
-  })
-
-  .controller('OtherProfileCtrl', function ($scope, $rootScope, $stateParams) {
-    var id = $stateParams.otherProfileId;
-    $scope.other = "";
-    console.log($rootScope.connectionList.length);
-    for (var i = 0; i < $rootScope.connectionList.length; i++) {
-      if (id == $rootScope.connectionList[i].id) {
-        $scope.other = $rootScope.connectionList[i];
       }
     }
   })
